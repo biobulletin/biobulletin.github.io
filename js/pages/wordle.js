@@ -135,7 +135,7 @@ export const Wordle = (() => {
       if (!over) return "";
       const won = guesses.includes(answer);
       return `
-        <div class="wordle-end card ${won ? "bg-mint" : "bg-peach"}">
+        <div class="wordle-end card ${won ? "bg-teal" : "bg-blush"}">
           <h3>${won ? `🎉 Got it in ${guesses.length}/${MAX_GUESSES}!` : "😅 So close!"}</h3>
           <p>The word was <b>${answer}</b> — ${UI.esc(puzzle.hint)}</p>
           ${mode === "daily" ? `<p class="small">A new daily word arrives tomorrow.</p>` : ""}
@@ -151,7 +151,7 @@ export const Wordle = (() => {
         <section class="container wordle-page">
           <a href="#/play" class="back-link">← All games</a>
           <div class="wordle-head">
-            <span class="chip ${mode === "daily" ? "bg-lime" : "bg-lav"}">
+            <span class="chip ${mode === "daily" ? "bg-vanilla" : "bg-sage"}">
               ${mode === "daily" ? "📅 Daily word" : "🎯 Practice"} · ${UI.esc(puzzle.category || "STEM")}
             </span>
             <h1>STEM Wordle</h1>

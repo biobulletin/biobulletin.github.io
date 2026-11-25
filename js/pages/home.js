@@ -12,12 +12,12 @@ export const HomePage = (() => {
   // Each plays a different note of the scale, so clicking them
   // one after another plays a little tune.
   const STICKERS = [
-    { emoji: "🚀", label: "Rocket" },
-    { emoji: "🧪", label: "Test tube" },
     { emoji: "🧬", label: "DNA" },
-    { emoji: "🧲", label: "Magnet" },
-    { emoji: "💡", label: "Light bulb" },
-    { emoji: "🔭", label: "Telescope" },
+    { emoji: "🔬", label: "Microscope" },
+    { emoji: "🌱", label: "Seedling" },
+    { emoji: "🦠", label: "Microbe" },
+    { emoji: "🐝", label: "Bee" },
+    { emoji: "🧪", label: "Test tube" },
   ];
 
   const RIBBON_A = ["Written by students", "Read", "Play", "Level up", "Ask big questions"];
@@ -42,36 +42,16 @@ export const HomePage = (() => {
     },
   ];
 
-  // Big animated atom inside the hero arch.
-  // Each electron travels along an ellipse using <animateMotion>.
-  const ORBIT_PATH = "M20,100 a80,30 0 1,0 160,0 a80,30 0 1,0 -160,0";
-  function atomSVG() {
-    const orbit = (angle, dur, color) => `
-      <g transform="rotate(${angle} 100 100)">
-        <ellipse cx="100" cy="100" rx="80" ry="30" fill="none" stroke="#1E1B4B" stroke-width="4"/>
-        <circle r="8" fill="${color}" stroke="#1E1B4B" stroke-width="3">
-          <animateMotion dur="${dur}" repeatCount="indefinite" path="${ORBIT_PATH}"/>
-        </circle>
-      </g>`;
-    return `
-      <svg viewBox="0 0 200 200" class="big-atom" aria-hidden="true">
-        ${orbit(0, "3s", "#FFC2E2")}
-        ${orbit(60, "4s", "#BDEFD6")}
-        ${orbit(-60, "5s", "#BFD8FF")}
-        <circle cx="100" cy="100" r="20" fill="#DDF45B" stroke="#1E1B4B" stroke-width="4"/>
-      </svg>`;
-  }
-
   // Rotating round sticker with text around the edge
   function badgeSVG() {
     return `
       <svg viewBox="0 0 100 100" class="spin-badge" aria-hidden="true">
         <defs><path id="badgeCircle" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/></defs>
-        <circle cx="50" cy="50" r="48" fill="#DDF45B" stroke="#1E1B4B" stroke-width="2"/>
-        <text font-size="10.5" font-weight="800" letter-spacing="2.2" fill="#1E1B4B">
+        <circle cx="50" cy="50" r="48" fill="#79A178" stroke="#3A0F0F" stroke-width="2"/>
+        <text font-size="10.5" font-weight="800" letter-spacing="2.2" fill="#FFFFFF">
           <textPath href="#badgeCircle">100% STUDENT WRITTEN • STEM •</textPath>
         </text>
-        <text x="50" y="58" text-anchor="middle" font-size="22">⚛️</text>
+        <text x="50" y="58" text-anchor="middle" font-size="22">🌿</text>
       </svg>`;
   }
 
@@ -87,7 +67,7 @@ export const HomePage = (() => {
       <section class="hero">
         <div class="container hero-grid">
           <div class="hero-text">
-            <span class="pill-label">⚛️ A student-written STEM magazine</span>
+            <span class="pill-label">🌿 A student-written STEM magazine</span>
             <h1>Small Questions,<br><span class="accent">Big Ideas.</span></h1>
             <p>Articles written by students who got curious and kept asking why.
                Read something new, solve a STEM puzzle, and level up your avatar along the way.</p>
@@ -98,8 +78,8 @@ export const HomePage = (() => {
           </div>
 
           <div class="hero-art">
-            <button class="hero-arch" id="heroAtom" data-sound="none" aria-label="Spin the atom">
-              ${atomSVG()}
+            <button class="hero-arch" id="heroLogo" data-sound="none" aria-label="BioBulletin logo — tap me!">
+              <img class="hero-logo" src="assets/logo.png" alt="BioBulletin logo: a capybara with glasses inside a letter B" width="512" height="512">
             </button>
             ${badgeSVG()}
             ${STICKERS.map((s, i) => `
@@ -112,7 +92,7 @@ export const HomePage = (() => {
 
       <!-- ========== RIBBONS ========== -->
       <div class="ribbons" aria-hidden="true">
-        <div class="ribbon ribbon-lime">${ribbon(RIBBON_A)}</div>
+        <div class="ribbon ribbon-sage">${ribbon(RIBBON_A)}</div>
         <div class="ribbon ribbon-ink">${ribbon(RIBBON_B)}</div>
       </div>
 
@@ -143,13 +123,13 @@ export const HomePage = (() => {
                Spend them to make your avatar uniquely yours.</p>
           </div>
           <div class="plan-cards">
-            <a href="#/articles" class="plan-card bg-lime" data-sound="pop">
+            <a href="#/articles" class="plan-card bg-vanilla" data-sound="pop">
               <span class="plan-num">01</span><b>Read</b><small>Articles written by club members</small>
             </a>
-            <a href="#/play" class="plan-card bg-lav" data-sound="pop">
+            <a href="#/play" class="plan-card bg-sage" data-sound="pop">
               <span class="plan-num">02</span><b>Play</b><small>STEM Wordle and crosswords</small>
             </a>
-            <a href="#/me" class="plan-card bg-mint" data-sound="pop">
+            <a href="#/me" class="plan-card bg-teal" data-sound="pop">
               <span class="plan-num">03</span><b>Earn</b><small>Coins for everything you finish</small>
             </a>
             <a href="#/me" class="plan-card plan-card-dashed" data-sound="pop">
@@ -168,7 +148,7 @@ export const HomePage = (() => {
         </div>
         <div class="bento">
           <a href="#/play/wordle" class="bento-card bento-big bg-ink" data-sound="pop">
-            <span class="chip bg-lime">New every day</span>
+            <span class="chip bg-vanilla">New every day</span>
             <div class="mini-wordle" aria-hidden="true">
               <span class="t g">O</span><span class="t y">R</span><span class="t">B</span><span class="t g">I</span><span class="t">T</span>
             </div>
@@ -178,19 +158,19 @@ export const HomePage = (() => {
             </div>
             <span class="bento-go">Play →</span>
           </a>
-          <a href="#/play" class="bento-card bg-lav" data-sound="pop">
+          <a href="#/play" class="bento-card bg-sage" data-sound="pop">
             <span class="bento-emoji">✏️</span>
             <h3>Crossword</h3><p>Clues from this month's articles.</p>
           </a>
-          <a href="#/me" class="bento-card bg-mint" data-sound="pop">
+          <a href="#/me" class="bento-card bg-teal" data-sound="pop">
             <span class="bento-emoji">❓</span>
             <h3>Quiz of the day</h3><p>One question. Five coins.</p>
           </a>
-          <a href="#/me" class="bento-card bg-lime" data-sound="pop">
+          <a href="#/me" class="bento-card bg-vanilla" data-sound="pop">
             <span class="bento-emoji">🎩</span>
             <h3>Avatar shop</h3><p>Hats, colours and more.</p>
           </a>
-          <a href="#/articles" class="bento-card bg-pink" data-sound="pop">
+          <a href="#/articles" class="bento-card bg-rose" data-sound="pop">
             <span class="bento-emoji">📰</span>
             <h3>Latest articles</h3><p>Fresh from club members.</p>
           </a>
@@ -207,7 +187,7 @@ export const HomePage = (() => {
              and share it here, along with puzzles to test what you learned.</p>
           <p class="signature">— The editors</p>
         </div>
-        <div class="about-cta card bg-pink">
+        <div class="about-cta card bg-rose">
           <span class="bento-emoji">✍️</span>
           <h3>Want to write for us?</h3>
           <p>No experience needed. Bring a question you can't stop thinking about.</p>
@@ -236,7 +216,7 @@ export const HomePage = (() => {
 
   // Little burst of coloured dots from a point (the sticker that was clicked)
   function sparkle(target) {
-    const colors = ["#DDF45B", "#FFC2E2", "#BDEFD6", "#BFD8FF", "#7C5CF0"];
+    const colors = ["#CE2424", "#79A178", "#4D96AC", "#926968", "#FAE9AC"];
     for (let i = 0; i < 8; i++) {
       const dot = document.createElement("span");
       dot.className = "spark";
@@ -265,10 +245,10 @@ export const HomePage = (() => {
       });
     });
 
-    const atom = app.querySelector("#heroAtom");
-    atom.addEventListener("click", () => {
+    const logo = app.querySelector("#heroLogo");
+    logo.addEventListener("click", () => {
       Sound.play("boing");
-      replay(atom, "spin");
+      replay(logo, "spin");
     });
   }
 

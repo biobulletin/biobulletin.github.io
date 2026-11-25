@@ -18,12 +18,12 @@
    ========================================================= */
 
 export const CATEGORIES = {
-  Physics:     { emoji: "⚛️", color: "lav" },
-  Biology:     { emoji: "🧬", color: "mint" },
-  Chemistry:   { emoji: "🧪", color: "pink" },
-  Maths:       { emoji: "📐", color: "lime" },
-  Technology:  { emoji: "💻", color: "sky" },
-  Engineering: { emoji: "⚙️", color: "peach" },
+  Physics:     { emoji: "⚛️", color: "teal" },
+  Biology:     { emoji: "🧬", color: "sage" },
+  Chemistry:   { emoji: "🧪", color: "blush" },
+  Maths:       { emoji: "📐", color: "vanilla" },
+  Technology:  { emoji: "💻", color: "rose" },
+  Engineering: { emoji: "⚙️", color: "sand" },
 };
 
 export const ARTICLES = [

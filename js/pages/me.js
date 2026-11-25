@@ -59,7 +59,7 @@ export function MePage(app) {
     if (!unread.length) return `<p class="all-read">🎉 You've read every article. New ones are coming soon!</p>`;
     return unread.map((a) => `
       <a class="next-item" href="#/article/${a.id}" data-sound="pop">
-        <span class="next-emoji bg-${(CATEGORIES[a.category] || {}).color || "lav"}">${a.emoji}</span>
+        <span class="next-emoji bg-${(CATEGORIES[a.category] || {}).color || "sage"}">${a.emoji}</span>
         <span class="next-text"><b>${UI.esc(a.title)}</b><small>${UI.esc(a.category)} · +10 coins</small></span>
         <span class="next-go" aria-hidden="true">↗</span>
       </a>`).join("");
@@ -95,12 +95,12 @@ export function MePage(app) {
           </form>
 
           <div class="stats">
-            ${statCard("mint", "📰", readCount, "Articles read", pct(readCount, ARTICLES.length))}
-            ${statCard("peach", "🧩", crosswordsDone + wordlesDone, "Puzzles solved", pct(crosswordsDone, CROSSWORDS.length))}
-            ${statCard("lav", "🔥", streak, "Day streak", pct(Math.min(streak, 7), 7))}
+            ${statCard("teal", "📰", readCount, "Articles read", pct(readCount, ARTICLES.length))}
+            ${statCard("blush", "🧩", crosswordsDone + wordlesDone, "Puzzles solved", pct(crosswordsDone, CROSSWORDS.length))}
+            ${statCard("sage", "🔥", streak, "Day streak", pct(Math.min(streak, 7), 7))}
           </div>
 
-          <div class="level card bg-lav">
+          <div class="level card bg-sage">
             <div class="level-top">
               <b>Level ${Store.level()}</b>
               <span>${s.xp} XP total</span>
@@ -290,7 +290,7 @@ export function MePage(app) {
     const finished = today.correct || today.tries >= QUIZ_TRIES;
 
     if (finished) {
-      quizBox.className = `quiz card ${today.correct ? "bg-mint" : "bg-peach"}`;
+      quizBox.className = `quiz card ${today.correct ? "bg-teal" : "bg-blush"}`;
       quizBox.innerHTML = `
         <span class="pill-label">Quiz of the day</span>
         <h3>${UI.esc(question.q)}</h3>

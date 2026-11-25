@@ -34,8 +34,8 @@
   font-weight: 700;
   white-space: nowrap;
 }
-.brand img { transition: transform 0.4s ease; }
-.brand:hover img { transform: rotate(180deg); }
+.brand img { transition: transform 0.3s cubic-bezier(.3, 1.6, .5, 1); }
+.brand:hover img { transform: scale(1.1) rotate(-6deg); }
 
 .nav-links {
   display: flex;
@@ -52,7 +52,7 @@
   transition: background 0.15s ease;
 }
 .nav-links a:hover  { background: var(--cream); }
-.nav-links a.active { background: var(--lime); }   /* like Brushi's lime "Home" */
+.nav-links a.active { background: var(--vanilla); }   /* like Brushi's lime "Home" */
 .nav-links .ni { font-size: 1rem; }
 
 /* Right side of the nav: coin counter + sound button */
@@ -74,7 +74,7 @@
 }
 .coin-pill.bump { animation: bump 0.45s ease; }
 @keyframes bump {
-  30% { transform: scale(1.18) rotate(-4deg); background: var(--lime); }
+  30% { transform: scale(1.18) rotate(-4deg); background: var(--vanilla); }
   60% { transform: scale(0.95); }
 }
 
@@ -125,11 +125,18 @@ main { min-height: 70vh; }
   gap: 32px;
   padding: 48px 0 32px;
 }
-.footer .brand { color: var(--white); }
+.footer .brand { color: var(--white); gap: 14px; }
+.logo-badge {
+  display: grid;
+  place-items: center;
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  background: var(--cream);
+}
 .footer p { color: rgba(255, 255, 255, 0.7); max-width: 340px; margin-top: 12px; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 8px 24px; align-content: start; }
 .footer-links a { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
-.footer-links a:hover { color: var(--lime); }
+.footer-links a:hover { color: var(--vanilla); }
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding: 18px 0 24px;

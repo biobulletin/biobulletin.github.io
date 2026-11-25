@@ -25,7 +25,7 @@
   display: grid;
   place-items: center;
   height: 170px;
-  background-image: radial-gradient(rgba(30, 27, 75, 0.08) 1.5px, transparent 1.6px);
+  background-image: radial-gradient(rgba(58, 15, 15, 0.08) 1.5px, transparent 1.6px);
   background-size: 18px 18px;
 }
 .acard-emoji { font-size: 4.2rem; transition: transform 0.3s cubic-bezier(.3, 1.6, .5, 1); }
@@ -36,7 +36,7 @@
   padding: 4px 10px;
   border-radius: var(--r-pill);
   background: var(--ink);
-  color: var(--lime);
+  color: var(--vanilla);
   font-size: 0.75rem;
   font-weight: 700;
 }
@@ -77,7 +77,7 @@
   border: 1.5px solid var(--line);
   border-radius: var(--r-pill);
 }
-.search:focus-within { border-color: var(--lav-d); }
+.search:focus-within { border-color: var(--red); }
 .search input { flex: 1 1 0; width: 0; min-width: 0; border: none; outline: none; background: none; }
 
 .filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
@@ -111,13 +111,13 @@
 .read-progress span {
   display: block;
   height: 100%;
-  background: var(--lav-d);
+  background: var(--red);
   transform-origin: left;
   transform: scaleX(0);
 }
 
 .reader { max-width: 760px; padding: 40px 0 20px; }
-.back-link { display: inline-block; margin-bottom: 24px; font-weight: 700; color: var(--lav-d); }
+.back-link { display: inline-block; margin-bottom: 24px; font-weight: 700; color: var(--red); }
 .back-link:hover { text-decoration: underline; }
 
 .reader-head { display: grid; gap: 16px; justify-items: start; }
@@ -131,7 +131,7 @@
   margin: 32px 0;
   border-radius: var(--r-lg);
   font-size: 7rem;
-  background-image: radial-gradient(rgba(30, 27, 75, 0.08) 1.6px, transparent 1.7px);
+  background-image: radial-gradient(rgba(58, 15, 15, 0.08) 1.6px, transparent 1.7px);
   background-size: 22px 22px;
 }
 
@@ -139,14 +139,14 @@
 .reader-body { display: grid; gap: 20px; }
 .reader-body p { color: var(--ink); font-size: 1.1rem; line-height: 1.8; }
 .reader-body h2 { font-size: 1.9rem; margin-top: 16px; }
-.reader-body strong { background: linear-gradient(transparent 60%, var(--lime) 60%); }  /* highlighter */
+.reader-body strong { background: linear-gradient(transparent 60%, var(--vanilla) 60%); }  /* highlighter */
 
 .fun-fact {
   display: flex;
   gap: 14px;
   padding: 20px 22px;
   border-radius: var(--r-md);
-  background: var(--lav);
+  background: var(--sage);
 }
 .fun-fact span { font-size: 1.5rem; }
 .fun-fact p { font-size: 1rem !important; font-weight: 600; }
@@ -157,7 +157,7 @@
   align-items: center;
   gap: 18px;
   margin-top: 40px;
-  border: 2px dashed var(--lav);
+  border: 2px dashed var(--sage);
 }
 .finish-card > div { flex: 1; min-width: 200px; }
 .finish-emoji { font-size: 2.4rem; }

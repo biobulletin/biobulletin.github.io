@@ -61,7 +61,7 @@
   place-items: center;
   width: 54px; height: 54px;
   border-radius: 50%;
-  background: conic-gradient(var(--ink) calc(var(--p) * 1%), rgba(30, 27, 75, 0.12) 0);
+  background: conic-gradient(var(--ink) calc(var(--p) * 1%), rgba(58, 15, 15, 0.12) 0);
 }
 .ring span {
   display: grid;
@@ -91,7 +91,7 @@
   background: var(--ink);
   transition: width 0.6s ease;
 }
-.bar.dark { background: rgba(30, 27, 75, 0.15); height: 6px; }
+.bar.dark { background: rgba(58, 15, 15, 0.15); height: 6px; }
 
 /* ---------- Avatar card (pink, like the dashboard's character card) ---------- */
 .avatar-card {
@@ -99,13 +99,13 @@
   justify-items: center;
   gap: 12px;
   padding: 22px;
-  background: var(--pink);
+  background: var(--rose);
   background-image: radial-gradient(circle at 50% 55%, rgba(255,255,255,0.55) 0 30%, rgba(255,255,255,0.28) 30% 42%, transparent 42%);
 }
 .avatar-card-top { display: flex; justify-content: space-between; width: 100%; font-weight: 700; }
 .avatar-card .bar { width: 100%; }
 .avatar-big { width: min(250px, 90%); border-radius: 50%; }
-.avatar-big .avatar-svg { width: 100%; height: auto; filter: drop-shadow(0 10px 18px rgba(30, 27, 75, 0.18)); }
+.avatar-big .avatar-svg { width: 100%; height: auto; filter: drop-shadow(0 10px 18px rgba(58, 15, 15, 0.18)); }
 .avatar-big.wiggle { animation: wiggle 0.6s cubic-bezier(.3, 1.6, .5, 1); }
 @keyframes wiggle {
   0%   { transform: scale(1); }
@@ -152,7 +152,7 @@
 }
 .day small { font-size: 0.72rem; font-weight: 700; color: var(--muted); }
 .day b { font-size: 1rem; }
-.day.active { background: var(--lime); }
+.day.active { background: var(--vanilla); }
 .day.today  { background: var(--ink); color: var(--white); }
 .day.today small { color: rgba(255, 255, 255, 0.7); }
 .day i {
@@ -163,7 +163,7 @@
   width: 16px; height: 16px;
   display: grid; place-items: center;
   border-radius: 50%;
-  background: var(--mint);
+  background: var(--teal);
   color: var(--ink);
 }
 .week-card small { color: var(--muted); font-weight: 600; }
@@ -208,7 +208,7 @@
 .coin-balance {
   padding: 10px 18px;
   border-radius: var(--r-pill);
-  background: var(--lime);
+  background: var(--vanilla);
   font-weight: 600;
 }
 
@@ -237,7 +237,7 @@
   background: var(--cream);
   transition: transform 0.15s ease, border-color 0.15s ease;
 }
-.shop-item:hover { transform: translateY(-3px); border-color: var(--lav-d); }
+.shop-item:hover { transform: translateY(-3px); border-color: var(--red); }
 .shop-item.is-wearing { border-color: var(--ink); background: var(--white); }
 .shop-item.locked { opacity: 0.55; }
 .shop-item.locked:hover { transform: none; }
@@ -245,9 +245,9 @@
 .item-name { font-weight: 700; font-size: 0.9rem; }
 
 .badge { padding: 3px 10px; border-radius: var(--r-pill); font-size: 0.75rem; font-weight: 700; }
-.badge.wearing { background: var(--ink); color: var(--lime); }
-.badge.owned   { background: var(--mint); }
-.badge.price   { background: var(--lime); }
+.badge.wearing { background: var(--ink); color: var(--vanilla); }
+.badge.owned   { background: var(--teal); }
+.badge.price   { background: var(--vanilla); }
 
 /* =========================================================
    Backup
@@ -272,8 +272,8 @@
   word-break: break-all;
 }
 .backup-row { display: flex; flex-wrap: wrap; gap: 10px; }
-.btn-danger { border: 1.5px solid #D93B5C; color: #D93B5C; padding: 10px 20px; }
-.btn-danger:hover { background: #D93B5C; color: var(--white); }
+.btn-danger { border: 1.5px solid var(--red); color: var(--red); padding: 10px 20px; }
+.btn-danger:hover { background: var(--red); color: var(--white); }
 
 /* =========================================================
    Smaller screens

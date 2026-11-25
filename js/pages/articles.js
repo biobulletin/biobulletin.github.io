@@ -16,7 +16,7 @@ export const Articles = (() => {
   // Newest first (dates are "YYYY-MM-DD", so text order = date order)
   const newestFirst = () => [...ARTICLES].sort((a, b) => b.date.localeCompare(a.date));
 
-  const categoryOf = (a) => CATEGORIES[a.category] || { emoji: "✨", color: "lav" };
+  const categoryOf = (a) => CATEGORIES[a.category] || { emoji: "✨", color: "sage" };
 
   // ~200 words per minute, at least 1 minute
   function readingMinutes(a) {
@@ -134,7 +134,7 @@ export const Articles = (() => {
       Router.setTitle("Article not found");
       app.innerHTML = `
         <section class="container reader-missing">
-          <div class="card bg-peach">
+          <div class="card bg-blush">
             <h1>Article not found</h1>
             <p>It may have been renamed or removed.</p>
             <a class="btn btn-dark" href="#/articles">Back to articles <span class="btn-arrow">→</span></a>

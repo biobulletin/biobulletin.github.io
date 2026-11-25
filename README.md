@@ -139,8 +139,15 @@ js/
   crossword-builder.js  turns words into a crossword grid
   data/                 CONTENT: articles.js, puzzles.js
   pages/                home, articles, wordle, crossword, play, me
-assets/logo.svg
+assets/                logo.png (club logo), favicon.png, apple-touch-icon.png
 ```
+
+## Colours
+
+The BioBulletin palette lives at the top of `css/base.css`:
+Sage Green `#79A178`, Flag Red `#CE2424`, Blue Green `#4D96AC`,
+Smoky Rose `#926968`, Vanilla Custard `#FAE9AC`, plus maroon text `#3A0F0F`
+from the logo. Cards use light tints of these so text stays readable.
 
 ## Good to know
 

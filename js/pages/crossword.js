@@ -71,7 +71,7 @@ export const Crossword = (() => {
       <section class="container cw-page">
         <a href="#/play" class="back-link">← All games</a>
         <div class="cw-head">
-          <span class="chip bg-lav">✏️ Crossword · ${grid.words.length} words</span>
+          <span class="chip bg-sage">✏️ Crossword · ${grid.words.length} words</span>
           <h1>${UI.esc(puzzle.title)}</h1>
         </div>
 
@@ -145,7 +145,7 @@ export const Crossword = (() => {
 
     function showDone() {
       app.querySelector("#cwDone").innerHTML = `
-        <div class="card bg-mint cw-done">
+        <div class="card bg-teal cw-done">
           <h3>🎉 Crossword complete!</h3>
           <p>Every answer is correct.</p>
           <a class="btn btn-dark" href="#/play" data-sound="pop">More games <span class="btn-arrow">→</span></a>
