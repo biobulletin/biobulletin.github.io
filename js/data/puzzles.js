@@ -63,3 +63,23 @@ const CROSSWORDS = [
     ],
   },
 ];
+
+/* =========================================================
+   QUIZ OF THE DAY
+   - q: the question
+   - answers: every answer you'll accept (capitals, "the" and
+     punctuation are ignored, so "The Sun" = "sun")
+   - fact: shown after answering, to teach something
+   One question per day, in order, then it loops.
+   These are SAMPLES — replace them with the club's questions.
+   ========================================================= */
+
+const QUIZ = [
+  { q: "Which gas do plants take in to make their food?", answers: ["carbon dioxide", "co2"], fact: "Plants use carbon dioxide, water and sunlight to make sugar. That's photosynthesis." },
+  { q: "Which planet is known as the Red Planet?", answers: ["mars"], fact: "Mars looks red because its dust is full of iron oxide: rust!" },
+  { q: "How many sides does a hexagon have?", answers: ["6", "six"], fact: "Bees build hexagon-shaped cells because they fit together with no gaps." },
+  { q: "What is the chemical symbol for water?", answers: ["h2o"], fact: "Each water molecule has two hydrogen atoms and one oxygen atom." },
+  { q: "What force pulls objects towards the Earth?", answers: ["gravity"], fact: "Gravity on the Moon is about one sixth as strong as on Earth." },
+  { q: "What part of the cell holds its DNA?", answers: ["nucleus", "the nucleus"], fact: "If you stretched out the DNA in one human cell, it would be about 2 metres long." },
+  { q: "What is the closest star to Earth?", answers: ["sun", "the sun"], fact: "Light from the Sun takes about 8 minutes to reach us." },
+];

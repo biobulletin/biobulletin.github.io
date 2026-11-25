@@ -1,8 +1,8 @@
 /* =========================================================
-   My Space: avatar + shop
+   My Space: dashboard, shop, backup
    ========================================================= */
 
-.me-page { padding: 48px 0 20px; }
+.me-page { display: grid; gap: 24px; padding: 40px 0 20px; }
 
 /* Small avatar in the nav */
 .nav-avatar {
@@ -16,26 +16,95 @@
 .nav-avatar:hover { transform: scale(1.08) rotate(-6deg); }
 .nav-avatar svg { width: 100%; height: 100%; }
 
-/* ---------- Layout: big avatar left, shop right ---------- */
-.shop-layout {
+/* =========================================================
+   Dashboard: 3 columns (like the dashboard design)
+   ========================================================= */
+.dash {
   display: grid;
-  grid-template-columns: 0.9fr 1.4fr;
+  grid-template-columns: 1fr 1.05fr 0.85fr;
   gap: 20px;
   align-items: start;
 }
+.dash-col { display: grid; gap: 16px; min-width: 0; }
+.dash h3 { font-size: 1.25rem; margin-bottom: 12px; }
 
-.avatar-stage {
-  position: sticky;
-  top: 100px;
+/* ---------- Hello + name ---------- */
+.hello { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hello h1 { font-size: clamp(2.2rem, 4vw, 3rem); }
+.name-form { display: flex; gap: 8px; }
+.name-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 16px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--line);
+  background: var(--white);
+}
+
+/* ---------- Stat cards with progress rings ---------- */
+/* minmax(0, 1fr): let columns shrink below their content's natural width on small phones */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.stat {
   display: grid;
   justify-items: center;
-  gap: 16px;
-  padding: 32px;
-  background: var(--pink);
-  /* soft rings behind the avatar, like the dashboard design */
-  background-image: radial-gradient(circle at 50% 42%, rgba(255,255,255,0.55) 0 32%, rgba(255,255,255,0.3) 32% 44%, transparent 44%);
+  gap: 2px;
+  padding: 18px 8px;
+  text-align: center;
 }
-.avatar-big { width: min(300px, 100%); border-radius: 50%; }
+.stat b { font-family: var(--font-display); font-size: 2.2rem; font-weight: 500; line-height: 1.1; margin-top: 6px; }
+.stat small { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+
+/* A ring is a circle painted with conic-gradient: --p% ink, the rest faint.
+   The white circle inside (span) turns the pie into a ring. */
+.ring {
+  display: grid;
+  place-items: center;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: conic-gradient(var(--ink) calc(var(--p) * 1%), rgba(30, 27, 75, 0.12) 0);
+}
+.ring span {
+  display: grid;
+  place-items: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--white);
+  font-size: 1.15rem;
+}
+
+/* ---------- Level + progress bars ---------- */
+.level { display: grid; gap: 10px; }
+.level-top { display: flex; justify-content: space-between; align-items: baseline; }
+.level-top b { font-family: var(--font-display); font-size: 1.6rem; font-weight: 500; }
+.level-top span, .level small { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+
+.bar {
+  height: 10px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+}
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ink);
+  transition: width 0.6s ease;
+}
+.bar.dark { background: rgba(30, 27, 75, 0.15); height: 6px; }
+
+/* ---------- Avatar card (pink, like the dashboard's character card) ---------- */
+.avatar-card {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 22px;
+  background: var(--pink);
+  background-image: radial-gradient(circle at 50% 55%, rgba(255,255,255,0.55) 0 30%, rgba(255,255,255,0.28) 30% 42%, transparent 42%);
+}
+.avatar-card-top { display: flex; justify-content: space-between; width: 100%; font-weight: 700; }
+.avatar-card .bar { width: 100%; }
+.avatar-big { width: min(250px, 90%); border-radius: 50%; }
 .avatar-big .avatar-svg { width: 100%; height: auto; filter: drop-shadow(0 10px 18px rgba(30, 27, 75, 0.18)); }
 .avatar-big.wiggle { animation: wiggle 0.6s cubic-bezier(.3, 1.6, .5, 1); }
 @keyframes wiggle {
@@ -45,16 +114,101 @@
   75%  { transform: scale(1.03) rotate(-2deg); }
   100% { transform: scale(1); }
 }
+.avatar-actions { display: flex; gap: 12px; }
+.avatar-actions .icon-btn { width: 52px; height: 52px; border: none; box-shadow: var(--shadow-sm); }
 
+/* ---------- Topic chips ---------- */
+.topics { display: flex; flex-wrap: wrap; gap: 8px; }
+.topics .chip.complete { background: var(--ink); color: var(--white); }
+
+/* ---------- Quiz of the day ---------- */
+.quiz { display: grid; gap: 12px; justify-items: start; }
+.quiz h3 { font-size: 1.45rem; margin: 0; }
+.quiz small { color: var(--muted); font-weight: 600; }
+.quiz-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 6px;
+}
+.quiz-form input { flex: 1; border: none; outline: none; background: none; font-size: 1rem; padding: 6px 0; }
+.quiz-result, .quiz-fact { color: var(--ink); }
+.quiz.shake { animation: shake 0.4s ease; }
+
+/* ---------- This week ---------- */
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 12px; }
+.day {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 10px 0;
+  border-radius: var(--r-pill);
+  background: var(--cream);
+}
+.day small { font-size: 0.72rem; font-weight: 700; color: var(--muted); }
+.day b { font-size: 1rem; }
+.day.active { background: var(--lime); }
+.day.today  { background: var(--ink); color: var(--white); }
+.day.today small { color: rgba(255, 255, 255, 0.7); }
+.day i {
+  position: absolute;
+  bottom: -6px;
+  font-style: normal;
+  font-size: 0.65rem;
+  width: 16px; height: 16px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--mint);
+  color: var(--ink);
+}
+.week-card small { color: var(--muted); font-weight: 600; }
+
+/* ---------- Up next ---------- */
+.up-next { display: grid; gap: 6px; }
+.up-next h3 { margin-bottom: 6px; }
+.next-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: var(--r-md);
+  transition: background 0.15s ease;
+}
+.next-item:hover { background: var(--cream); }
+.next-emoji {
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+}
+.next-text { display: grid; flex: 1; line-height: 1.3; }
+.next-text b { font-size: 0.92rem; }
+.next-text small { color: var(--muted); font-size: 0.78rem; }
+.next-go { font-size: 1.1rem; opacity: 0.6; }
+.all-read { color: var(--ink); font-weight: 600; }
+
+/* =========================================================
+   Shop
+   ========================================================= */
+.shop { display: grid; gap: 20px; scroll-margin-top: 100px; }
+.shop-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+}
+.shop-head h2 { margin-top: 10px; }
 .coin-balance {
   padding: 10px 18px;
   border-radius: var(--r-pill);
-  background: var(--white);
+  background: var(--lime);
   font-weight: 600;
 }
-
-/* ---------- Shop ---------- */
-.shop { display: grid; gap: 20px; }
 
 .shop-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
 .shop-tab {
@@ -88,20 +242,51 @@
 .avatar-mini { width: 86px; height: 86px; }
 .item-name { font-weight: 700; font-size: 0.9rem; }
 
-.badge {
-  padding: 3px 10px;
-  border-radius: var(--r-pill);
-  font-size: 0.75rem;
-  font-weight: 700;
-}
+.badge { padding: 3px 10px; border-radius: var(--r-pill); font-size: 0.75rem; font-weight: 700; }
 .badge.wearing { background: var(--ink); color: var(--lime); }
 .badge.owned   { background: var(--mint); }
 .badge.price   { background: var(--lime); }
 
-@media (max-width: 860px) {
-  .shop-layout { grid-template-columns: 1fr; }
-  .avatar-stage { position: static; }
-  .avatar-big { width: min(220px, 70%); }
+/* =========================================================
+   Backup
+   ========================================================= */
+.backup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.backup h2 { margin: 10px 0 12px; }
+.backup-actions { display: grid; gap: 12px; justify-items: start; }
+.backup textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--line);
+  background: var(--cream);
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+  resize: vertical;
+  word-break: break-all;
+}
+.backup-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn-danger { border: 1.5px solid #D93B5C; color: #D93B5C; padding: 10px 20px; }
+.btn-danger:hover { background: #D93B5C; color: var(--white); }
+
+/* =========================================================
+   Smaller screens
+   ========================================================= */
+@media (max-width: 1100px) {
+  .dash { grid-template-columns: 1fr 1fr; }
+  .dash-col:last-child { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  .dash, .dash-col:last-child { grid-template-columns: minmax(0, 1fr); }
+  .stat { padding: 14px 4px; }
+  .stat small { font-size: 0.7rem; }
+  .backup { grid-template-columns: 1fr; gap: 16px; }
   .shop-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
   .avatar-mini { width: 68px; height: 68px; }
+  .avatar-big { width: min(220px, 70%); }
 }

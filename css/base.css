@@ -46,6 +46,8 @@ img, svg { display: block; max-width: 100%; }
 button, input, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; border: none; background: none; }
 a { color: inherit; text-decoration: none; }
+/* The HTML hidden attribute must always win, even over our display: flex/grid rules */
+[hidden] { display: none !important; }
 
 /* ---------- 3. Page basics ---------- */
 body {

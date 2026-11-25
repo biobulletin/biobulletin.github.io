@@ -13,14 +13,8 @@ const Wordle = (() => {
 
   const clean = (w) => w.toUpperCase().replace(/[^A-Z]/g, "");
 
-  // Days since 1 Jan 1970 (by the visitor's calendar date).
-  // Date.UTC avoids daylight-saving hours messing up the count.
-  function dayNumber(d = new Date()) {
-    return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
-  }
-
   // Same word for everyone on the same day, cycling through the list
-  const dailyPuzzle = () => WORDLE_WORDS[dayNumber() % WORDLE_WORDS.length];
+  const dailyPuzzle = () => WORDLE_WORDS[Store.dayNumber() % WORDLE_WORDS.length];
 
   // Colour each letter of a guess.
   // Two passes so repeated letters are handled correctly:

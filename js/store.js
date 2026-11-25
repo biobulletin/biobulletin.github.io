@@ -84,6 +84,12 @@ const Store = (() => {
   }
   const today = () => dateKey();
 
+  // Days since 1 Jan 1970 by calendar date. Used to pick "today's" Wordle
+  // word and quiz question. Date.UTC avoids daylight-saving hours.
+  function dayNumber(d = new Date()) {
+    return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  }
+
   function markActiveToday() {
     if (!state.days.includes(today())) {
       update((s) => {
@@ -150,7 +156,7 @@ const Store = (() => {
 
   return {
     get, update, onChange,
-    today, dateKey, markActiveToday, streak,
+    today, dateKey, dayNumber, markActiveToday, streak,
     award, spend, level, levelProgress, XP_PER_LEVEL,
     exportCode, importCode, reset,
   };
