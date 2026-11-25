@@ -3,52 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Curious Atom</title>
+  <title>The Curious Atom — a student STEM magazine</title>
+  <meta name="description" content="Student-written STEM articles, Wordle, crosswords and more.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 
-  <!-- Fonts from Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Styles -->
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
-  <!-- TEMPORARY style preview — replaced by the real page shell in Step 3 -->
-  <main class="container" style="padding: 48px 0; display: grid; gap: 40px;">
 
-    <div style="display:flex; align-items:center; gap:14px;">
-      <img src="assets/logo.svg" alt="" width="56" height="56">
-      <span class="pill-label">Style preview</span>
+  <!-- ===== Top navigation ===== -->
+  <header class="topbar">
+    <nav class="nav" aria-label="Main">
+      <a href="#/" class="brand">
+        <img src="assets/logo.svg" alt="" width="34" height="34">
+        <span>The Curious Atom</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#/" data-nav="/"><span class="ni" aria-hidden="true">🏠</span><span>Home</span></a>
+        <a href="#/articles" data-nav="/article"><span class="ni" aria-hidden="true">📰</span><span>Articles</span></a>
+        <a href="#/play" data-nav="/play"><span class="ni" aria-hidden="true">🧩</span><span>Play</span></a>
+        <a href="#/me" data-nav="/me"><span class="ni" aria-hidden="true">🤖</span><span>My Space</span></a>
+      </div>
+
+      <div class="nav-right"><!-- coins + sound button arrive in Step 4 --></div>
+    </nav>
+  </header>
+
+  <!-- ===== Pages are drawn in here by the router ===== -->
+  <main id="app" tabindex="-1"></main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <a href="#/" class="brand">
+          <img src="assets/logo.svg" alt="" width="34" height="34">
+          <span>The Curious Atom</span>
+        </a>
+        <p>A STEM magazine written by students, for students. Read, play, and level up.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#/articles">Articles</a>
+        <a href="#/play">Play</a>
+        <a href="#/me">My Space</a>
+      </nav>
     </div>
-
-    <h1>Small Questions,<br><span class="accent">Big Ideas.</span></h1>
-    <p style="max-width:520px;">A student-written STEM magazine. This page only shows the colours,
-      fonts and building blocks the real site will use.</p>
-
-    <div style="display:flex; flex-wrap:wrap; gap:12px;">
-      <a class="btn btn-dark" href="#">Start reading <span class="btn-arrow">→</span></a>
-      <a class="btn btn-outline" href="#">Play a puzzle</a>
-      <a class="btn btn-lime" href="#">Lime button</a>
-      <button class="icon-btn" aria-label="Sound">🔊</button>
+    <div class="container footer-bottom">
+      © <span id="year"></span> The Curious Atom club · Made by students
     </div>
+  </footer>
 
-    <div style="display:flex; flex-wrap:wrap; gap:8px;">
-      <span class="chip bg-lav">⚛️ Physics</span>
-      <span class="chip bg-mint">🧬 Biology</span>
-      <span class="chip bg-sky">💻 Technology</span>
-      <span class="chip bg-lime">📐 Maths</span>
-      <span class="chip bg-pink">🧪 Chemistry</span>
-      <span class="chip bg-peach">⚙️ Engineering</span>
-    </div>
-
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;">
-      <div class="card bg-lime"><h3>Read</h3><p>Articles written by club members.</p></div>
-      <div class="card bg-lav"><h3>Play</h3><p>STEM Wordle and crosswords.</p></div>
-      <div class="card bg-mint"><h3>Earn</h3><p>Coins for everything you finish.</p></div>
-      <div class="card bg-ink"><h3>Style</h3><p>Dress up your Atom bot.</p></div>
-    </div>
-
-  </main>
+  <!-- Scripts: order matters — router first, then the app that uses it -->
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
