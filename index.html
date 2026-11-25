@@ -4,9 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Curious Atom</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+
+  <!-- Fonts from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
-  <h1>The Curious Atom</h1>
-  <p>Coming soon — a student-written STEM magazine.</p>
+  <!-- TEMPORARY style preview — replaced by the real page shell in Step 3 -->
+  <main class="container" style="padding: 48px 0; display: grid; gap: 40px;">
+
+    <div style="display:flex; align-items:center; gap:14px;">
+      <img src="assets/logo.svg" alt="" width="56" height="56">
+      <span class="pill-label">Style preview</span>
+    </div>
+
+    <h1>Small Questions,<br><span class="accent">Big Ideas.</span></h1>
+    <p style="max-width:520px;">A student-written STEM magazine. This page only shows the colours,
+      fonts and building blocks the real site will use.</p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:12px;">
+      <a class="btn btn-dark" href="#">Start reading <span class="btn-arrow">→</span></a>
+      <a class="btn btn-outline" href="#">Play a puzzle</a>
+      <a class="btn btn-lime" href="#">Lime button</a>
+      <button class="icon-btn" aria-label="Sound">🔊</button>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+      <span class="chip bg-lav">⚛️ Physics</span>
+      <span class="chip bg-mint">🧬 Biology</span>
+      <span class="chip bg-sky">💻 Technology</span>
+      <span class="chip bg-lime">📐 Maths</span>
+      <span class="chip bg-pink">🧪 Chemistry</span>
+      <span class="chip bg-peach">⚙️ Engineering</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;">
+      <div class="card bg-lime"><h3>Read</h3><p>Articles written by club members.</p></div>
+      <div class="card bg-lav"><h3>Play</h3><p>STEM Wordle and crosswords.</p></div>
+      <div class="card bg-mint"><h3>Earn</h3><p>Coins for everything you finish.</p></div>
+      <div class="card bg-ink"><h3>Style</h3><p>Dress up your Atom bot.</p></div>
+    </div>
+
+  </main>
 </body>
 </html>

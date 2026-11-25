@@ -1,0 +1,196 @@
+/* =========================================================
+   The Curious Atom — base design system
+   Colours, fonts, buttons, chips and cards used everywhere.
+   ========================================================= */
+
+/* ---------- 1. Design tokens (named "paint pots") ---------- */
+:root {
+  /* Main colours */
+  --ink:      #1E1B4B;  /* deep navy: text, dark sections, dark buttons */
+  --cream:    #FBF8F1;  /* page background */
+  --white:    #FFFFFF;
+
+  /* Pastel accents */
+  --lav:      #C8B6FF;  /* lavender: hero, highlights */
+  --lav-d:    #7C5CF0;  /* darker lavender: links, "Big Grin" style text */
+  --lime:     #DDF45B;  /* lime: call-to-action pops */
+  --mint:     #BDEFD6;
+  --peach:    #FFD8B5;
+  --pink:     #FFC2E2;
+  --sky:      #BFD8FF;
+
+  /* Text shades */
+  --muted:    #5B587A;  /* softer text for descriptions */
+  --line:     #E6E1F5;  /* thin borders */
+
+  /* Fonts */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body:    "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* Shapes */
+  --r-sm:   12px;
+  --r-md:   20px;
+  --r-lg:   28px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 0 rgba(30, 27, 75, 0.08);
+  --shadow-md: 0 10px 30px rgba(30, 27, 75, 0.10);
+}
+
+/* ---------- 2. Reset: make every browser start the same ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { scroll-behavior: smooth; }
+img, svg { display: block; max-width: 100%; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; }
+a { color: inherit; text-decoration: none; }
+
+/* ---------- 3. Page basics ---------- */
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+h1 { font-size: clamp(2.6rem, 7vw, 5rem); }
+h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+h3 { font-size: 1.35rem; line-height: 1.2; }
+
+p { color: var(--muted); }
+
+.container {
+  width: min(1160px, 100% - 40px);
+  margin-inline: auto;
+}
+
+/* Text accent, like "Big Grin." in the Brushi design */
+.accent { color: var(--lav-d); }
+
+/* ---------- 4. Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px 10px 20px;
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover  { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn:active { transform: translateY(0) scale(0.97); }
+
+/* Navy button with a lime arrow circle (Brushi "Shop The Set") */
+.btn-dark { background: var(--ink); color: var(--white); }
+.btn-dark .btn-arrow {
+  display: grid;
+  place-items: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+/* Outlined button (Brushi "How It's Made") */
+.btn-outline {
+  border: 1.5px solid var(--ink);
+  padding: 10px 20px;
+}
+
+.btn-lime { background: var(--lime); color: var(--ink); padding: 10px 20px; }
+
+/* Round icon button (sound toggle, avatar buttons) */
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  font-size: 1.15rem;
+  transition: transform 0.15s ease;
+}
+.icon-btn:hover  { transform: translateY(-2px) rotate(-6deg); }
+.icon-btn:active { transform: scale(0.9); }
+
+/* ---------- 5. Small labels ---------- */
+/* Tiny outlined section label, like "THE BRUSH" */
+.pill-label {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid var(--ink);
+  border-radius: var(--r-pill);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Category chip, like "Chemistry" / "Math" in the dashboard */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  background: var(--lav);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ---------- 6. Cards ---------- */
+.card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Colour helpers: add to any card or chip */
+.bg-ink   { background: var(--ink); color: var(--white); }
+.bg-ink p { color: rgba(255, 255, 255, 0.75); }
+.bg-lav   { background: var(--lav); }
+.bg-lime  { background: var(--lime); }
+.bg-mint  { background: var(--mint); }
+.bg-peach { background: var(--peach); }
+.bg-pink  { background: var(--pink); }
+.bg-sky   { background: var(--sky); }
+.bg-cream { background: var(--cream); }
+
+/* ---------- 7. Section heading (centered, with small label above) ---------- */
+.section-head {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+/* ---------- 8. Accessibility ---------- */
+/* Clear outline when using the keyboard to move around */
+:focus-visible {
+  outline: 3px solid var(--lav-d);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Respect people who turn off animations in their device settings */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
