@@ -175,7 +175,9 @@ const Wordle = (() => {
 
           <div class="keyboard" aria-label="Keyboard">${keyboardHTML()}</div>
         </section>`;
+      // One-time animations: play them on this draw only, not on every redraw
       popLast = false;
+      revealRow = -1;
     }
 
     // ----- Playing -----
