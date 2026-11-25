@@ -55,13 +55,56 @@
 .nav-links a.active { background: var(--lime); }   /* like Brushi's lime "Home" */
 .nav-links .ni { font-size: 1rem; }
 
-/* Space on the right of the nav (coins + sound button arrive in Step 4) */
+/* Right side of the nav: coin counter + sound button */
 .nav-right {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-width: 44px;
 }
+
+.coin-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  font-weight: 700;
+}
+.coin-pill.bump { animation: bump 0.45s ease; }
+@keyframes bump {
+  30% { transform: scale(1.18) rotate(-4deg); background: var(--lime); }
+  60% { transform: scale(0.95); }
+}
+
+/* ---------- Toasts (pop-up messages) ---------- */
+#toasts {
+  position: fixed;
+  top: 84px;
+  right: 20px;
+  z-index: 100;
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  font-size: 0.92rem;
+  box-shadow: var(--shadow-md);
+  animation: toast-in 0.35s cubic-bezier(.2, 1.4, .4, 1);
+}
+.toast.leaving { animation: toast-out 0.4s ease forwards; }
+.toast-emoji { font-size: 1.2rem; }
+@keyframes toast-in  { from { transform: translateX(120%); opacity: 0; } }
+@keyframes toast-out { to   { transform: translateX(120%); opacity: 0; } }
 
 /* ---------- Main area ---------- */
 main { min-height: 70vh; }
@@ -132,5 +175,9 @@ main { min-height: 70vh; }
   .nav-links .ni { font-size: 1.25rem; }
 
   body { padding-bottom: 90px; }         /* so the tab bar doesn't cover content */
+
+  .nav .brand span { display: none; }    /* logo only, to fit coins + sound */
+  .nav { padding-left: 8px; }
+  #toasts { left: 20px; right: 20px; top: 76px; justify-items: center; }
   .page-placeholder .card { padding: 28px; }
 }

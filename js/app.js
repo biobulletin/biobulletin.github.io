@@ -49,4 +49,6 @@ Router.add(/^\/me$/, placeholderPage({
 // Footer year updates itself
 document.getElementById("year").textContent = new Date().getFullYear();
 
+UI.init();                  // coin counter, mute button, click sounds
+Store.markActiveToday();    // counts towards the daily streak
 Router.start();
