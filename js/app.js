@@ -18,10 +18,7 @@ function placeholderPage({ emoji, title, text, step, color }) {
   };
 }
 
-Router.add(/^\/$/, placeholderPage({
-  emoji: "🏠", title: "Home", step: 5, color: "lav",
-  text: "The big hero, scrolling ribbons, how-it-works and the FAQ will live here.",
-}));
+Router.add(/^\/$/, HomePage);
 
 Router.add(/^\/articles$/, placeholderPage({
   emoji: "📰", title: "Articles", step: 6, color: "mint",

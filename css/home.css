@@ -1,0 +1,327 @@
+/* =========================================================
+   Home page styles
+   ========================================================= */
+
+/* ---------- Hero ---------- */
+.hero {
+  /* Pull the lavender up behind the floating nav, like Brushi */
+  margin-top: -86px;
+  padding: 140px 0 40px;
+  background-color: var(--lav);
+  /* Soft dot pattern */
+  background-image: radial-gradient(rgba(30, 27, 75, 0.09) 1.6px, transparent 1.7px);
+  background-size: 22px 22px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-text { display: grid; gap: 22px; justify-items: start; }
+.hero-text p { max-width: 460px; color: var(--ink); opacity: 0.8; font-size: 1.05rem; }
+.hero-text .pill-label { background: var(--white); border-color: var(--white); }
+.hero .accent { color: var(--lav-d); }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero .btn-outline { background: rgba(255, 255, 255, 0.4); }
+
+/* Right side: arch + floating stickers */
+.hero-art {
+  position: relative;
+  width: min(380px, 100%);
+  justify-self: center;
+}
+
+/* The arch-shaped frame (Brushi's photo frame) */
+.hero-arch {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 999px 36px 36px;
+  background: var(--cream);
+  border: 8px solid var(--white);
+  box-shadow: var(--shadow-md);
+}
+.big-atom { width: 78%; transition: transform 0.3s ease; }
+.hero-arch:hover .big-atom { transform: scale(1.04); }
+.hero-arch.spin .big-atom { animation: atom-spin 0.9s cubic-bezier(.3, 1.4, .5, 1); }
+@keyframes atom-spin {
+  from { transform: rotate(0) scale(0.9); }
+  to   { transform: rotate(360deg) scale(1); }
+}
+
+/* Rotating text badge, top right */
+.spin-badge {
+  position: absolute;
+  top: -18px; right: -24px;
+  width: 104px;
+  animation: slow-spin 14s linear infinite;
+}
+@keyframes slow-spin { to { transform: rotate(360deg); } }
+
+/* Clickable science stickers */
+.sticker {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  font-size: 1.7rem;
+  box-shadow: 0 4px 0 var(--ink);
+  animation: float 4s ease-in-out infinite;
+  transition: box-shadow 0.1s ease;
+}
+.sticker:hover  { box-shadow: 0 6px 0 var(--ink); }
+.sticker:active { box-shadow: 0 1px 0 var(--ink); }
+.sticker.boing  { animation: boing 0.5s cubic-bezier(.3, 1.8, .5, 1), float 4s ease-in-out 0.5s infinite; }
+
+/* Positions around the arch, each floating at a different time */
+.sticker.s0 { top: 12%;  left: -28px; animation-delay: 0s; }
+.sticker.s1 { top: 42%;  left: -40px; animation-delay: -1s; }
+.sticker.s2 { bottom: 8%; left: -14px; animation-delay: -2s; }
+.sticker.s3 { top: 34%;  right: -36px; animation-delay: -0.5s; }
+.sticker.s4 { bottom: 20%; right: -30px; animation-delay: -1.5s; }
+.sticker.s5 { bottom: -22px; left: 42%; animation-delay: -2.5s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes boing {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.35) rotate(-12deg); }
+  60%  { transform: scale(0.9) rotate(6deg); }
+  100% { transform: scale(1); }
+}
+
+/* Sparkle dots that fly out of a clicked sticker */
+.spark {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 9px; height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: spark 0.6s ease-out forwards;
+}
+@keyframes spark {
+  to { transform: translate(var(--dx), var(--dy)) scale(0.2); opacity: 0; }
+}
+
+/* Wavy "scalloped" bottom edge under the hero */
+.scallop {
+  height: 22px;
+  background: radial-gradient(circle at 14px 0, var(--lav) 14px, transparent 14.5px) repeat-x;
+  background-size: 28px 22px;
+}
+
+/* ---------- Ribbons ---------- */
+.ribbons {
+  position: relative;
+  height: 150px;
+  margin: 10px 0 40px;
+  overflow: hidden;
+}
+.ribbon {
+  position: absolute;
+  left: -5%; right: -5%;
+  padding: 12px 0;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ribbon-lime { top: 24px; background: var(--lime); transform: rotate(-2.5deg); z-index: 1; }
+.ribbon-ink  { top: 84px; background: var(--ink); color: var(--white); transform: rotate(2deg); }
+
+.ribbon-track {
+  display: inline-flex;
+  gap: 22px;
+  animation: marquee 28s linear infinite;
+}
+.ribbon-ink .ribbon-track { animation-direction: reverse; animation-duration: 34s; }
+.ribbon .star { color: var(--lav-d); }
+.ribbon-ink .star { color: var(--lime); }
+
+/* The text is written twice, so sliding by half loops perfectly */
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- The plan (navy section) ---------- */
+.plan {
+  background: var(--ink);
+  color: var(--white);
+  padding: 80px 0;
+  border-radius: var(--r-lg);
+  width: min(1200px, 100% - 24px);
+  margin-inline: auto;
+}
+.plan .pill-label { border-color: rgba(255, 255, 255, 0.6); margin-bottom: 16px; }
+.plan-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.plan-head p { color: rgba(255, 255, 255, 0.7); max-width: 320px; }
+
+.plan-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.plan-card {
+  display: grid;
+  gap: 4px;
+  align-content: end;
+  min-height: 210px;
+  padding: 22px;
+  border-radius: var(--r-lg);
+  color: var(--ink);
+  transition: transform 0.25s cubic-bezier(.3, 1.6, .5, 1);
+}
+/* Slightly tilted, like stickers on a page; straighten on hover */
+.plan-card:nth-child(odd)  { transform: rotate(-2deg); }
+.plan-card:nth-child(even) { transform: rotate(2deg) translateY(10px); }
+.plan-card:hover { transform: rotate(0) translateY(-6px) scale(1.03); }
+.plan-card b { font-family: var(--font-display); font-size: 2.6rem; font-weight: 500; line-height: 1; }
+.plan-card small { font-size: 0.85rem; opacity: 0.75; }
+.plan-num {
+  justify-self: start;
+  margin-bottom: auto;
+  padding: 2px 10px;
+  border: 1.5px solid currentColor;
+  border-radius: var(--r-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.plan-card-dashed {
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  color: var(--lav);
+}
+
+/* ---------- Pick your puzzle (bento grid) ---------- */
+.puzzles { padding: 96px 0 40px; }
+
+.bento {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 18px;
+}
+.bento-card {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 24px;
+  border-radius: var(--r-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.bento-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.bento-card p { font-size: 0.92rem; }
+.bento-emoji { font-size: 2rem; margin-bottom: 18px; }
+
+.bento-big {
+  grid-row: span 2;
+  align-content: space-between;
+  gap: 24px;
+  min-height: 360px;
+}
+.bento-big .chip { justify-self: start; }
+.bento-big h3 { font-size: 2rem; }
+.bento-go { font-weight: 700; color: var(--lime); }
+
+/* Small Wordle preview tiles */
+.mini-wordle { display: flex; gap: 8px; }
+.mini-wordle .t {
+  display: grid;
+  place-items: center;
+  width: 52px; height: 52px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+.mini-wordle .t.g { background: var(--mint); color: var(--ink); border-color: var(--mint); }
+.mini-wordle .t.y { background: var(--lime); color: var(--ink); border-color: var(--lime); }
+
+/* ---------- About the club ---------- */
+.about {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 18px;
+  padding: 56px 0 40px;
+}
+.about-note { display: grid; gap: 16px; justify-items: start; padding: 40px; }
+.about-note .pill-label { margin-bottom: 4px; }
+.signature {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--ink);
+}
+.about-cta { display: grid; gap: 10px; align-content: start; justify-items: start; padding: 32px; }
+.about-cta .btn { margin-top: auto; }
+
+/* ---------- FAQ ---------- */
+.faq { padding: 56px 0 20px; }
+.faq-list { display: grid; gap: 12px; max-width: 760px; margin-inline: auto; }
+.faq-item {
+  background: var(--white);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;          /* hide the default triangle */
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--lav);
+  font-size: 1.2rem;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.faq-item[open] .faq-icon { transform: rotate(45deg); background: var(--lime); }
+.faq-item p { padding: 0 22px 20px; }
+
+/* ---------- Tablets ---------- */
+@media (max-width: 960px) {
+  .plan-cards { grid-template-columns: repeat(2, 1fr); }
+  .bento { grid-template-columns: 1fr 1fr; }
+  .bento-big { grid-column: span 2; grid-row: auto; min-height: 280px; }
+  .about { grid-template-columns: 1fr; }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 760px) {
+  .hero { padding-top: 120px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+  .hero-art { width: min(270px, 70%); }
+  .sticker { width: 50px; height: 50px; font-size: 1.4rem; }
+  .spin-badge { width: 84px; right: -30px; }
+
+  .plan { padding: 56px 0; }
+  .plan-card { min-height: 170px; }
+  .plan-card b { font-size: 2rem; }
+
+  .bento { grid-template-columns: 1fr; }
+  .bento-big { grid-column: auto; }
+  .about-note { padding: 28px; }
+}
