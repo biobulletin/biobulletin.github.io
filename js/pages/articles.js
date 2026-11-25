@@ -2,6 +2,7 @@
    Articles: shared helpers, the list page and the reader page
    ========================================================= */
 
+import { Router } from "../router.js";
 import { Store } from "../store.js";
 import { UI } from "../ui.js";
 import { ARTICLES, CATEGORIES } from "../data/articles.js";
@@ -130,6 +131,7 @@ export const Articles = (() => {
   function readerPage(app, id) {
     const a = byId(id);
     if (!a) {
+      Router.setTitle("Article not found");
       app.innerHTML = `
         <section class="container reader-missing">
           <div class="card bg-peach">
@@ -141,6 +143,7 @@ export const Articles = (() => {
       return;
     }
 
+    Router.setTitle(a.title);
     const cat = categoryOf(a);
     const more = newestFirst().filter((x) => x.id !== a.id).slice(0, 2);
 

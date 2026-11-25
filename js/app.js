@@ -20,16 +20,16 @@ import { MePage } from "./pages/me.js";
 // Each line: "when the address looks like THIS, draw THAT page"
 Router.add(/^\/$/, HomePage);
 
-Router.add(/^\/articles$/, Articles.listPage);
+Router.add(/^\/articles$/, Articles.listPage, "Articles");
 
 // One article, e.g. #/article/why-is-the-sky-blue → id = "why-is-the-sky-blue"
 Router.add(/^\/article\/([\w-]+)$/, Articles.readerPage);
 
-Router.add(/^\/play$/, PlayPage);
-Router.add(/^\/play\/wordle$/, Wordle.page);
-Router.add(/^\/play\/crossword\/([\w-]+)$/, Crossword.page);
+Router.add(/^\/play$/, PlayPage, "Play");
+Router.add(/^\/play\/wordle$/, Wordle.page, "STEM Wordle");
+Router.add(/^\/play\/crossword\/([\w-]+)$/, Crossword.page, "Crossword");
 
-Router.add(/^\/me$/, MePage);
+Router.add(/^\/me$/, MePage, "My Space");
 
 // Footer year updates itself
 document.getElementById("year").textContent = new Date().getFullYear();

@@ -180,7 +180,14 @@ p { color: var(--muted); }
   margin-bottom: 40px;
 }
 
-/* ---------- 8. Accessibility ---------- */
+/* ---------- 8. Shared animations ---------- */
+/* Side-to-side "nope" shake: wrong Wordle guess, wrong quiz answer */
+@keyframes shake {
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+/* ---------- 9. Accessibility ---------- */
 /* Clear outline when using the keyboard to move around */
 :focus-visible {
   outline: 3px solid var(--lav-d);

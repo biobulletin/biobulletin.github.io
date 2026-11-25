@@ -77,10 +77,6 @@
 }
 
 .wrow.shake { animation: shake 0.4s ease; }
-@keyframes shake {
-  20%, 60% { transform: translateX(-8px); }
-  40%, 80% { transform: translateX(8px); }
-}
 
 .wordle-msg { min-height: 1.4em; font-weight: 700; color: var(--ink); }
 

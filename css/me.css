@@ -25,7 +25,7 @@
   gap: 20px;
   align-items: start;
 }
-.dash-col { display: grid; gap: 16px; min-width: 0; }
+.dash-col { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; min-width: 0; }
 .dash h3 { font-size: 1.25rem; margin-bottom: 12px; }
 
 /* ---------- Hello + name ---------- */
@@ -122,7 +122,7 @@
 .topics .chip.complete { background: var(--ink); color: var(--white); }
 
 /* ---------- Quiz of the day ---------- */
-.quiz { display: grid; gap: 12px; justify-items: start; }
+.quiz { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; justify-items: start; }
 .quiz h3 { font-size: 1.45rem; margin: 0; }
 .quiz small { color: var(--muted); font-weight: 600; }
 .quiz-form {
@@ -133,7 +133,9 @@
   border-bottom: 2px solid var(--ink);
   padding-bottom: 6px;
 }
-.quiz-form input { flex: 1; border: none; outline: none; background: none; font-size: 1rem; padding: 6px 0; }
+/* width: 0 + flex-grow: text boxes have a built-in ~20-character width that
+   would otherwise stretch the card on small phones */
+.quiz-form input { flex: 1 1 0; width: 0; min-width: 0; border: none; outline: none; background: none; font-size: 1rem; padding: 6px 0; }
 .quiz-result, .quiz-fact { color: var(--ink); }
 .quiz.shake { animation: shake 0.4s ease; }
 
@@ -278,7 +280,7 @@
    ========================================================= */
 @media (max-width: 1100px) {
   .dash { grid-template-columns: 1fr 1fr; }
-  .dash-col:last-child { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+  .dash-col:last-child { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 }
 
 @media (max-width: 760px) {

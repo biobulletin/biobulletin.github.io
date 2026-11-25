@@ -6,6 +6,7 @@
    - Solving it the first time earns coins
    ========================================================= */
 
+import { Router } from "../router.js";
 import { Store } from "../store.js";
 import { Sound } from "../sound.js";
 import { UI } from "../ui.js";
@@ -23,6 +24,7 @@ export const Crossword = (() => {
     const puzzle = byId(id);
     if (!puzzle) { location.hash = "#/play"; return; }
 
+    Router.setTitle(`${puzzle.title} crossword`);
     const grid = CrosswordBuilder.build(puzzle.entries);
     if (grid.skipped.length) {
       console.warn(`Crossword "${puzzle.id}": couldn't fit these words:`, grid.skipped);

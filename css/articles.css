@@ -78,7 +78,7 @@
   border-radius: var(--r-pill);
 }
 .search:focus-within { border-color: var(--lav-d); }
-.search input { flex: 1; border: none; outline: none; background: none; }
+.search input { flex: 1 1 0; width: 0; min-width: 0; border: none; outline: none; background: none; }
 
 .filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
 .filter {

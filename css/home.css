@@ -7,6 +7,7 @@
   /* Pull the lavender up behind the floating nav, like Brushi */
   margin-top: -86px;
   padding: 140px 0 40px;
+  overflow-x: clip;      /* safety net: floating stickers never cause sideways scrolling */
   background-color: var(--lav);
   /* Soft dot pattern */
   background-image: radial-gradient(rgba(30, 27, 75, 0.09) 1.6px, transparent 1.7px);
@@ -303,6 +304,8 @@
 
 /* ---------- Tablets ---------- */
 @media (max-width: 960px) {
+  /* leave room for the stickers that float outside the arch */
+  .hero-art { width: min(380px, 100% - 64px); }
   .plan-cards { grid-template-columns: repeat(2, 1fr); }
   .bento { grid-template-columns: 1fr 1fr; }
   .bento-big { grid-column: span 2; grid-row: auto; min-height: 280px; }

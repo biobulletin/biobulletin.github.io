@@ -137,6 +137,12 @@ main { min-height: 70vh; }
   color: rgba(255, 255, 255, 0.55);
 }
 
+/* ---------- Tablets: not enough room for the full nav ---------- */
+@media (max-width: 960px) {
+  .nav .brand span { display: none; }          /* logo only */
+  .nav-links a { padding: 8px 12px; white-space: nowrap; }
+}
+
 /* ---------- Phones: nav links become a bottom tab bar ---------- */
 @media (max-width: 760px) {
   /* backdrop-filter would trap the "fixed" tab bar inside the nav pill,

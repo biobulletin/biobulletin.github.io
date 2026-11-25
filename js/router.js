@@ -15,8 +15,15 @@ export const Router = (() => {
   // The view gets the <main> element and any captured parts of the URL.
   // It may return a function, which we call when the user leaves that page
   // (e.g. to stop listening for keyboard presses in a game).
-  function add(pattern, view) {
-    routes.push({ pattern, view });
+  // title (optional) is shown in the browser tab; a page can also set
+  // its own title while drawing (e.g. an article uses its headline).
+  function add(pattern, view, title = "") {
+    routes.push({ pattern, view, title });
+  }
+
+  const SITE = "BioBulletin";
+  function setTitle(title) {
+    document.title = title ? `${title} · ${SITE}` : `${SITE} — a student STEM magazine`;
   }
 
   // Turn "#/article/sky-blue" into "/article/sky-blue"
@@ -46,6 +53,7 @@ export const Router = (() => {
     for (const route of routes) {
       const match = path.match(route.pattern);
       if (match) {
+        setTitle(route.title);                       // before drawing, so a page can override it
         const result = route.view(app, ...match.slice(1));
         cleanup = typeof result === "function" ? result : null;
         highlightNav(path);
@@ -64,5 +72,5 @@ export const Router = (() => {
     resolve();
   }
 
-  return { add, start };
+  return { add, start, setTitle };
 })();
