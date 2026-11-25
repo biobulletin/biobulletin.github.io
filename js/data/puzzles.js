@@ -9,7 +9,7 @@
    These are SAMPLES — replace them with the club's words.
    ========================================================= */
 
-const WORDLE_WORDS = [
+export const WORDLE_WORDS = [
   { word: "ORBIT", category: "Physics",    hint: "The curved path a planet takes around a star." },
   { word: "LASER", category: "Physics",    hint: "A very narrow, focused beam of light." },
   { word: "GENES", category: "Biology",    hint: "Instructions stored in your DNA." },
@@ -33,7 +33,7 @@ const WORDLE_WORDS = [
    These are SAMPLES — replace them with the club's crosswords.
    ========================================================= */
 
-const CROSSWORDS = [
+export const CROSSWORDS = [
   {
     id: "space-and-energy",
     title: "Space & Energy",
@@ -74,7 +74,7 @@ const CROSSWORDS = [
    These are SAMPLES — replace them with the club's questions.
    ========================================================= */
 
-const QUIZ = [
+export const QUIZ = [
   { q: "Which gas do plants take in to make their food?", answers: ["carbon dioxide", "co2"], fact: "Plants use carbon dioxide, water and sunlight to make sugar. That's photosynthesis." },
   { q: "Which planet is known as the Red Planet?", answers: ["mars"], fact: "Mars looks red because its dust is full of iron oxide: rust!" },
   { q: "How many sides does a hexagon have?", answers: ["6", "six"], fact: "Bees build hexagon-shaped cells because they fit together with no gaps." },

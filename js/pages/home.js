@@ -4,7 +4,10 @@
              → about the club → FAQ
    ========================================================= */
 
-const HomePage = (() => {
+import { Sound } from "../sound.js";
+import { Articles } from "./articles.js";
+
+export const HomePage = (() => {
   // Clickable science stickers floating around the hero arch.
   // Each plays a different note of the scale, so clicking them
   // one after another plays a little tune.

@@ -74,21 +74,8 @@
   <!-- Pop-up messages appear in here -->
   <div id="toasts" aria-live="polite"></div>
 
-  <!-- Scripts: order matters — each file can use the ones loaded before it -->
-  <script src="js/router.js"></script>
-  <script src="js/store.js"></script>
-  <script src="js/sound.js"></script>
-  <script src="js/avatar.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/data/articles.js"></script>
-  <script src="js/pages/articles.js"></script>
-  <script src="js/data/puzzles.js"></script>
-  <script src="js/pages/wordle.js"></script>
-  <script src="js/crossword-builder.js"></script>
-  <script src="js/pages/crossword.js"></script>
-  <script src="js/pages/play.js"></script>
-  <script src="js/pages/me.js"></script>
-  <script src="js/pages/home.js"></script>
-  <script src="js/app.js"></script>
+  <!-- One entry point. app.js imports everything else it needs.
+       type="module" keeps all our code out of the browser console. -->
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

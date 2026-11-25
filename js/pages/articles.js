@@ -2,7 +2,11 @@
    Articles: shared helpers, the list page and the reader page
    ========================================================= */
 
-const Articles = (() => {
+import { Store } from "../store.js";
+import { UI } from "../ui.js";
+import { ARTICLES, CATEGORIES } from "../data/articles.js";
+
+export const Articles = (() => {
   const REWARD = 10;   // coins for finishing an article
 
   // ---------- Helpers ----------

@@ -7,7 +7,7 @@
    decides which page to draw. No "404 page not found" problems.
    ========================================================= */
 
-const Router = (() => {
+export const Router = (() => {
   const routes = [];     // list of { pattern, view }
   let cleanup = null;    // tidy-up function from the page we're leaving
 

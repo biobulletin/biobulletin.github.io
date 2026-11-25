@@ -17,7 +17,7 @@
    so every student sees the same puzzle.
    ========================================================= */
 
-const CrosswordBuilder = (() => {
+export const CrosswordBuilder = (() => {
   const STEP = { across: [0, 1], down: [1, 0] };   // [row change, column change]
   const key = (r, c) => `${r},${c}`;
 

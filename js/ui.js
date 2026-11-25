@@ -6,7 +6,11 @@
    - reward(): give coins with sound + message in one call
    ========================================================= */
 
-const UI = (() => {
+import { Store } from "./store.js";
+import { Sound } from "./sound.js";
+import { Avatar } from "./avatar.js";
+
+export const UI = (() => {
   // ---------- Escape text before putting it into HTML ----------
   // Turns < > & " ' into safe codes, so text like "a < b" shows as text
   // instead of being treated as HTML (which could break the page).
@@ -76,6 +80,11 @@ const UI = (() => {
     renderMute();
     renderNavAvatar();
     Store.onChange(() => { renderCoins(); renderMute(); renderNavAvatar(); });
+
+    // The saved progress was edited outside the site, so it was ignored
+    if (Store.wasTampered()) {
+      setTimeout(() => toast("Your saved progress was changed outside the site, so it was reset.", "⚠️"), 600);
+    }
 
     document.getElementById("muteBtn").addEventListener("click", () => {
       Store.update((s) => { s.muted = !s.muted; });

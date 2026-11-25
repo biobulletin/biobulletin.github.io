@@ -17,7 +17,7 @@
    club's real articles.
    ========================================================= */
 
-const CATEGORIES = {
+export const CATEGORIES = {
   Physics:     { emoji: "⚛️", color: "lav" },
   Biology:     { emoji: "🧬", color: "mint" },
   Chemistry:   { emoji: "🧪", color: "pink" },
@@ -26,7 +26,7 @@ const CATEGORIES = {
   Engineering: { emoji: "⚙️", color: "peach" },
 };
 
-const ARTICLES = [
+export const ARTICLES = [
   {
     id: "secret-maths-of-sunflowers",
     title: "The Secret Maths Hiding in Sunflowers",

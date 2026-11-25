@@ -6,7 +6,13 @@
    - Solving it the first time earns coins
    ========================================================= */
 
-const Crossword = (() => {
+import { Store } from "../store.js";
+import { Sound } from "../sound.js";
+import { UI } from "../ui.js";
+import { CrosswordBuilder } from "../crossword-builder.js";
+import { CROSSWORDS } from "../data/puzzles.js";
+
+export const Crossword = (() => {
   const REWARD = 25;
   const key = CrosswordBuilder.key;
 

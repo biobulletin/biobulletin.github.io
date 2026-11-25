@@ -6,14 +6,53 @@
    We keep a copy in the browser's localStorage, a small storage
    box every website gets in each browser. It survives closing the
    tab or restarting the computer, but it's per browser + device.
+
+   TAMPER SEAL
+   Each save is stored together with a "fingerprint" (a short code
+   calculated from the save's exact text). If someone edits the save
+   by hand in DevTools, the fingerprint no longer matches, and we
+   ignore the edited save. It's a lock on a diary, not a bank vault:
+   someone who reads this code could still forge one, but it stops
+   casual editing.
    ========================================================= */
 
-const Store = (() => {
+export const Store = (() => {
   // The label on our storage box. It still uses the project's first
   // placeholder name ON PURPOSE: changing it would make every browser
   // look in a new, empty box, and everyone would lose their progress.
   const KEY = "curious-atom-save-v1";
   const XP_PER_LEVEL = 50;
+  const SALT = "biobulletin:2026";   // mixed into every fingerprint
+
+  // Fingerprint (hash): turns any text into a short code. Change even one
+  // character of the text and the code comes out completely different.
+  // (This is the well-known "cyrb53" hash: fast and simple, not for passwords.)
+  function fingerprint(text) {
+    const str = SALT + text;
+    let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+    for (let i = 0; i < str.length; i++) {
+      const ch = str.charCodeAt(i);
+      h1 = Math.imul(h1 ^ ch, 2654435761);
+      h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
+  }
+
+  // state → sealed text: {"data":"...the save...","sig":"k3j9x..."}
+  function seal(obj) {
+    const data = JSON.stringify(obj);
+    return JSON.stringify({ data, sig: fingerprint(data) });
+  }
+
+  // sealed text → state, or null if it was edited / isn't a valid save
+  function unseal(text) {
+    const box = JSON.parse(text);
+    if (!box || typeof box.data !== "string" || box.sig !== fingerprint(box.data)) return null;
+    const obj = JSON.parse(box.data);
+    return obj && typeof obj === "object" && typeof obj.coins === "number" ? obj : null;
+  }
 
   // What a brand-new visitor starts with
   function defaults() {
@@ -45,11 +84,20 @@ const Store = (() => {
 
   // Read the box. try/catch because localStorage can be blocked
   // (e.g. some private-browsing modes) or contain broken data.
+  let tampered = false;
   function load() {
     try {
       const raw = localStorage.getItem(KEY);
-      return raw ? merge(defaults(), JSON.parse(raw)) : defaults();
+      if (!raw) return defaults();
+      const saved = unseal(raw);
+      if (saved) return merge(defaults(), saved);
+      // An old save from before the seal existed: quietly start fresh.
+      // Anything else (edited, broken) also starts fresh, but we say so.
+      const old = JSON.parse(raw);
+      if (!(old && old.sig === undefined && typeof old.coins === "number")) tampered = true;
+      return defaults();
     } catch (e) {
+      tampered = true;
       return defaults();
     }
   }
@@ -60,7 +108,7 @@ const Store = (() => {
   // Write the box, then tell anyone listening (e.g. the coin counter)
   function save() {
     try {
-      localStorage.setItem(KEY, JSON.stringify(state));
+      localStorage.setItem(KEY, seal(state));
     } catch (e) { /* storage blocked: progress lasts until the tab closes */ }
     listeners.forEach((fn) => fn(state));
   }
@@ -127,9 +175,10 @@ const Store = (() => {
   const levelProgress = () => (state.xp % XP_PER_LEVEL) / XP_PER_LEVEL;   // 0 → 1
 
   // ---------- Save codes (move progress to another device) ----------
-  // JSON text → bytes → base64, so it's one copy-pasteable line
+  // Sealed text → bytes → base64, so it's one copy-pasteable line.
+  // The seal travels inside the code, so an edited code is rejected too.
   function exportCode() {
-    const bytes = new TextEncoder().encode(JSON.stringify(state));
+    const bytes = new TextEncoder().encode(seal(state));
     let binary = "";
     bytes.forEach((b) => (binary += String.fromCharCode(b)));
     return btoa(binary);
@@ -139,8 +188,8 @@ const Store = (() => {
     try {
       const binary = atob(code.trim());
       const bytes = Uint8Array.from(binary, (ch) => ch.charCodeAt(0));
-      const data = JSON.parse(new TextDecoder().decode(bytes));
-      if (typeof data !== "object" || typeof data.coins !== "number") return false;
+      const data = unseal(new TextDecoder().decode(bytes));
+      if (!data) return false;
       state = merge(defaults(), data);
       save();
       return true;
@@ -159,5 +208,6 @@ const Store = (() => {
     today, dateKey, dayNumber, markActiveToday, streak,
     award, spend, level, levelProgress, XP_PER_LEVEL,
     exportCode, importCode, reset,
+    wasTampered: () => tampered,
   };
 })();

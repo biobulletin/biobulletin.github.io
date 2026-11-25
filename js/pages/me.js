@@ -6,7 +6,15 @@
    3. Backup     — save code to move progress, reset
    ========================================================= */
 
-function MePage(app) {
+import { Store } from "../store.js";
+import { Sound } from "../sound.js";
+import { UI } from "../ui.js";
+import { Avatar } from "../avatar.js";
+import { ARTICLES, CATEGORIES } from "../data/articles.js";
+import { CROSSWORDS, QUIZ } from "../data/puzzles.js";
+import { Articles } from "./articles.js";
+
+export function MePage(app) {
   const QUIZ_REWARD = 5;
   const QUIZ_TRIES = 3;
   const s = Store.get();

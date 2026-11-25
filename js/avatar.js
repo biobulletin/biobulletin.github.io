@@ -9,7 +9,9 @@
    one option from the CATALOG below.
    ========================================================= */
 
-const Avatar = (() => {
+import { Store } from "./store.js";
+
+export const Avatar = (() => {
   const INK = "#1E1B4B";
   const GLOW = "#BDEFD6";   // colour of the eyes and mouth on the screen
 

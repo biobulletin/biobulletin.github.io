@@ -7,7 +7,9 @@
    A short tone that slides up = "pop", two quick high notes = "coin".
    ========================================================= */
 
-const Sound = (() => {
+import { Store } from "./store.js";
+
+export const Sound = (() => {
   let ctx = null;   // the AudioContext: the browser's sound engine
 
   // Browsers only allow sound after the user clicks/taps something,

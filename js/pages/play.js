@@ -2,7 +2,12 @@
    Play hub: #/play — lists all the games
    ========================================================= */
 
-function PlayPage(app) {
+import { UI } from "../ui.js";
+import { CROSSWORDS } from "../data/puzzles.js";
+import { Wordle } from "./wordle.js";
+import { Crossword } from "./crossword.js";
+
+export function PlayPage(app) {
   const solved = Wordle.solvedToday();
 
   app.innerHTML = `

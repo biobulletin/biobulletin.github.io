@@ -5,7 +5,12 @@
    - The daily game is saved, so refreshing doesn't reset it
    ========================================================= */
 
-const Wordle = (() => {
+import { Store } from "../store.js";
+import { Sound } from "../sound.js";
+import { UI } from "../ui.js";
+import { WORDLE_WORDS } from "../data/puzzles.js";
+
+export const Wordle = (() => {
   const MAX_GUESSES = 6;
   const DAILY_REWARD = 15;
   const PRACTICE_REWARD = 3;
