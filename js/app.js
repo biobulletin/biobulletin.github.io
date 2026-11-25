@@ -27,6 +27,7 @@ Router.add(/^\/article\/([\w-]+)$/, Articles.readerPage);
 
 Router.add(/^\/play$/, PlayPage);
 Router.add(/^\/play\/wordle$/, Wordle.page);
+Router.add(/^\/play\/crossword\/([\w-]+)$/, Crossword.page);
 
 Router.add(/^\/me$/, placeholderPage({
   emoji: "🤖", title: "My Space", step: 10, color: "pink",

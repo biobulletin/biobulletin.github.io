@@ -26,10 +26,18 @@ function PlayPage(app) {
           <span class="bento-go">${solved ? "Practice more →" : "Play →"}</span>
         </a>
 
-        <div class="bento-card bg-lav is-soon">
-          <span class="bento-emoji">✏️</span>
-          <h3>Crossword</h3><p>Coming in the next step.</p>
-        </div>
+        ${CROSSWORDS.map((cw, i) => {
+          const done = Crossword.isSolved(cw.id);
+          const { filled, total } = Crossword.progress(cw.id);
+          const status = done ? "✓ Solved" : filled ? `${filled}/${total} squares filled` : "+25 coins";
+          const color = ["bg-lav", "bg-pink", "bg-sky", "bg-peach"][i % 4];
+          return `
+            <a href="#/play/crossword/${cw.id}" class="bento-card ${color}" data-sound="pop">
+              <span class="bento-emoji">✏️</span>
+              <h3>${UI.esc(cw.title)}</h3>
+              <p>Crossword · ${status}</p>
+            </a>`;
+        }).join("")}
 
         <a href="#/me" class="bento-card bg-mint" data-sound="pop">
           <span class="bento-emoji">❓</span>
