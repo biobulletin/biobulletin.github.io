@@ -65,6 +65,8 @@ export const Store = (() => {
       solved: { wordle: {}, crossword: {} },   // { puzzleId: "2026-11-25" }
       wordleDaily: null,        // today's Wordle in progress: { date, word, guesses }
       crosswordProgress: {},    // letters typed so far: { puzzleId: { "r,c": "A" } }
+      cwPractice: {},           // current practice crossword per topic: { topicId: { answers, solved } }
+      cwPracticeDaily: null,    // practice coins paid today: { date, count }
       quiz: {},                 // { "2026-11-25": true } one quiz per day
       days: [],                 // dates the visitor was active → streak
       avatar: { color: "caramel", eyes: "dot", hat: "none", acc: "none", bg: "vanilla" },

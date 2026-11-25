@@ -77,11 +77,35 @@ colours: `lav`, `mint`, `pink`, `lime`, `sky`, `peach`.
 { word: "ORBIT", category: "Physics", hint: "The curved path a planet takes around a star." },
 ```
 
-One word per day, in list order, looping. Any length works (5 is classic).
+One word per day, in list order, looping; practice mode picks random ones.
+There are 60 words (about two months before the daily word repeats). Any length works (5 is classic).
 
-### Crosswords → `js/data/puzzles.js` (`CROSSWORDS`)
+### Practice crosswords → `js/data/puzzles.js` (`CROSSWORD_TOPICS`)
 
-Just words and clues — the grid is built automatically.
+Endless crosswords. Each "New crossword" picks 8 random words from a topic's
+word bank and builds a fresh grid (turned on its side if it would be too wide
+for a phone). Each topic is one card on the Play page.
+
+```js
+{
+  id: "biology-medicine",
+  title: "Biology & Medicine",
+  emoji: "🧬",
+  color: "sage",
+  words: [
+    { answer: "NUCLEUS", clue: "The control centre of a cell, where its DNA is kept" },
+    ...
+  ],
+},
+```
+
+To add words, add `{ answer, clue }` lines to a topic. 30+ words per topic
+gives plenty of variety. Answers: letters only, no spaces.
+
+### Featured crosswords → `js/data/puzzles.js` (`CROSSWORDS`)
+
+Fixed puzzles worth more coins. Just words and clues — the grid is built
+automatically.
 
 ```js
 {
@@ -120,7 +144,8 @@ Change any `price`. Items with `price: 0` are free and owned from the start.
 | Finish an article | 10 (once per article) |
 | Daily Wordle | 15 (once per day) |
 | Practice Wordle | 3 (once per word) |
-| Crossword | 25 (once per crossword) |
+| Featured crossword | 25 (once per crossword) |
+| Practice crossword | 5 (first 3 per day) |
 | Quiz of the day | 5 (once per day) |
 
 Every 50 XP is one level. Spending coins never lowers XP or level.

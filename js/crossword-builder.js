@@ -21,7 +21,10 @@ export const CrosswordBuilder = (() => {
   const STEP = { across: [0, 1], down: [1, 0] };   // [row change, column change]
   const key = (r, c) => `${r},${c}`;
 
-  function build(entries) {
+  // options.portrait: if the finished grid is wider than it is tall,
+  // turn it on its side (rows ↔ columns, across ↔ down). A turned
+  // crossword is still a valid crossword, and narrow grids fit phones.
+  function build(entries, options = {}) {
     const words = entries
       .map((e, i) => ({ answer: e.answer.toUpperCase().replace(/[^A-Z]/g, ""), clue: e.clue, order: i }))
       .filter((w) => w.answer.length >= 2)
@@ -124,12 +127,29 @@ export const CrosswordBuilder = (() => {
       minR = Math.min(minR, r); minC = Math.min(minC, c);
       maxR = Math.max(maxR, r); maxC = Math.max(maxC, c);
     });
-    const grid = new Map();
+    let grid = new Map();
     cells.forEach((cell, k) => {
       const [r, c] = k.split(",").map(Number);
       grid.set(key(r - minR, c - minC), cell);
     });
     placed.forEach((p) => { p.r -= minR; p.c -= minC; });
+    let rows = placed.length ? maxR - minR + 1 : 0;
+    let cols = placed.length ? maxC - minC + 1 : 0;
+
+    // ---- Optionally turn a wide grid on its side ----
+    if (options.portrait && cols > rows) {
+      const turned = new Map();
+      grid.forEach((cell, k) => {
+        const [r, c] = k.split(",").map(Number);
+        turned.set(key(c, r), { letter: cell.letter, across: cell.down, down: cell.across });
+      });
+      grid = turned;
+      placed.forEach((p) => {
+        [p.r, p.c] = [p.c, p.r];
+        p.dir = p.dir === "across" ? "down" : "across";
+      });
+      [rows, cols] = [cols, rows];
+    }
 
     // ---- Number the clues in reading order ----
     const starts = [...new Set(placed.map((p) => key(p.r, p.c)))]
@@ -146,8 +166,8 @@ export const CrosswordBuilder = (() => {
     });
 
     return {
-      rows: placed.length ? maxR - minR + 1 : 0,
-      cols: placed.length ? maxC - minC + 1 : 0,
+      rows,
+      cols,
       cells: grid,
       words: placed,
       numberAt,

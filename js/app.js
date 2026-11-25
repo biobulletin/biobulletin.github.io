@@ -27,6 +27,7 @@ Router.add(/^\/article\/([\w-]+)$/, Articles.readerPage);
 
 Router.add(/^\/play$/, PlayPage, "Play");
 Router.add(/^\/play\/wordle$/, Wordle.page, "STEM Wordle");
+Router.add(/^\/play\/crossword\/practice\/([\w-]+)$/, Crossword.practicePage, "Practice crossword");
 Router.add(/^\/play\/crossword\/([\w-]+)$/, Crossword.page, "Crossword");
 
 Router.add(/^\/me$/, MePage, "My Space");

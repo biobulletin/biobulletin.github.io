@@ -3,7 +3,7 @@
    ========================================================= */
 
 import { UI } from "../ui.js";
-import { CROSSWORDS } from "../data/puzzles.js";
+import { CROSSWORDS, CROSSWORD_TOPICS } from "../data/puzzles.js";
 import { Wordle } from "./wordle.js";
 import { Crossword } from "./crossword.js";
 
@@ -26,28 +26,43 @@ export function PlayPage(app) {
           </div>
           <div>
             <h3>STEM Wordle</h3>
-            <p>Guess the science word in six tries. +15 coins for the daily word.</p>
+            <p>Guess the science word in six tries. +15 coins for the daily word, plus endless practice.</p>
           </div>
           <span class="bento-go">${solved ? "Practice more →" : "Play →"}</span>
         </a>
 
-        ${CROSSWORDS.map((cw, i) => {
-          const done = Crossword.isSolved(cw.id);
-          const { filled, total } = Crossword.progress(cw.id);
-          const status = done ? "✓ Solved" : filled ? `${filled}/${total} squares filled` : "+25 coins";
-          const color = ["bg-sage", "bg-rose", "bg-sand", "bg-blush"][i % 4];
-          return `
-            <a href="#/play/crossword/${cw.id}" class="bento-card ${color}" data-sound="pop">
-              <span class="bento-emoji">✏️</span>
-              <h3>${UI.esc(cw.title)}</h3>
-              <p>Crossword · ${status}</p>
-            </a>`;
-        }).join("")}
+        ${CROSSWORD_TOPICS.map((t) => `
+          <a href="#/play/crossword/practice/${t.id}" class="bento-card bg-${t.color || "sage"}" data-sound="pop">
+            <span class="bento-emoji">${t.emoji}</span>
+            <h3>${UI.esc(t.title)} crossword</h3>
+            <p>🔀 ${Crossword.practiceStatus(t.id)}</p>
+          </a>`).join("")}
 
-        <a href="#/me" class="bento-card bg-teal" data-sound="pop">
+        <a href="#/me" class="bento-card bg-vanilla" data-sound="pop">
           <span class="bento-emoji">❓</span>
           <h3>Quiz of the day</h3><p>On your My Space page.</p>
         </a>
       </div>
+
+      ${CROSSWORDS.length ? `
+        <div class="section-head featured-head">
+          <span class="pill-label">Featured</span>
+          <h2>Featured crosswords</h2>
+          <p>Hand-picked puzzles worth extra coins.</p>
+        </div>
+        <div class="featured-grid">
+          ${CROSSWORDS.map((cw, i) => {
+            const done = Crossword.isSolved(cw.id);
+            const { filled, total } = Crossword.progress(cw.id);
+            const status = done ? "✓ Solved" : filled ? `${filled}/${total} squares filled` : "+25 coins";
+            const color = ["bg-rose", "bg-sand", "bg-blush", "bg-teal"][i % 4];
+            return `
+              <a href="#/play/crossword/${cw.id}" class="bento-card ${color}" data-sound="pop">
+                <span class="bento-emoji">⭐</span>
+                <h3>${UI.esc(cw.title)}</h3>
+                <p>Crossword · ${status}</p>
+              </a>`;
+          }).join("")}
+        </div>` : ""}
     </section>`;
 }

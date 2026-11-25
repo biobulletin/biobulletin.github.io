@@ -4,7 +4,6 @@
 
 /* ---------- Play hub ---------- */
 .play-page { padding: 48px 0 20px; }
-.is-soon { opacity: 0.6; }
 
 /* ---------- Wordle page ---------- */
 .wordle-page {
@@ -226,4 +225,12 @@
 @media (max-width: 900px) {
   .cw-layout { grid-template-columns: 1fr; }
   .cw-main { justify-items: center; }
+}
+
+/* Featured crosswords, under the main games grid on the Play page */
+.featured-head { margin: 64px 0 24px; }
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
 }

@@ -238,7 +238,7 @@
   gap: 24px;
   min-height: 360px;
 }
-.bento-big .chip { justify-self: start; }
+.bento-big .chip { justify-self: start; color: var(--ink); }   /* don't inherit the dark card's white text */
 .bento-big h3 { font-size: 2rem; }
 .bento-go { font-weight: 700; color: var(--vanilla); }
 
