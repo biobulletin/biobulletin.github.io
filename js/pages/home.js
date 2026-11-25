@@ -20,13 +20,13 @@ export const HomePage = (() => {
     { emoji: "🧪", label: "Test tube" },
   ];
 
-  const RIBBON_A = ["Written by students", "Read", "Play", "Level up", "Ask big questions"];
+  const RIBBON_A = ["Picked by students", "Read", "Discuss", "Play", "Level up", "Ask big questions"];
   const RIBBON_B = ["Physics", "Biology", "Chemistry", "Maths", "Technology", "Engineering"];
 
   const FAQ = [
     {
-      q: "Who writes the articles?",
-      a: "Club members! Every article is researched and written by students, then checked by the club editors before it goes up.",
+      q: "Where do the articles come from?",
+      a: "Club members pick them! We look through lots of STEM articles, choose one, read it and talk it through together. Our picks end up here so you can read them too.",
     },
     {
       q: "Do I need an account?",
@@ -37,8 +37,8 @@ export const HomePage = (() => {
       a: "Finish reading an article, solve the Wordle or a crossword, or answer the quiz of the day. Spend coins on hats, colours and accessories for your avatar.",
     },
     {
-      q: "Can I write for the club?",
-      a: "Yes! Talk to any club member or the editors. You don't need to be an expert — curiosity is the only requirement.",
+      q: "Can I join the club?",
+      a: "Yes! Talk to any club member. You don't need to be an expert, just curious. Bring an article you found interesting and we might read it next.",
     },
   ];
 
@@ -49,7 +49,7 @@ export const HomePage = (() => {
         <defs><path id="badgeCircle" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/></defs>
         <circle cx="50" cy="50" r="48" fill="#79A178" stroke="#3A0F0F" stroke-width="2"/>
         <text font-size="10.5" font-weight="800" letter-spacing="2.2" fill="#FFFFFF">
-          <textPath href="#badgeCircle">100% STUDENT WRITTEN • STEM •</textPath>
+          <textPath href="#badgeCircle">PICKED • READ • DISCUSSED •</textPath>
         </text>
         <text x="50" y="58" text-anchor="middle" font-size="22">🌿</text>
       </svg>`;
@@ -67,10 +67,10 @@ export const HomePage = (() => {
       <section class="hero">
         <div class="container hero-grid">
           <div class="hero-text">
-            <span class="pill-label">🌿 A student-written STEM magazine</span>
+            <span class="pill-label">🌿 A student STEM reading club</span>
             <h1>Small Questions,<br><span class="accent">Big Ideas.</span></h1>
-            <p>Articles written by students who got curious and kept asking why.
-               Read something new, solve a STEM puzzle, and level up your avatar along the way.</p>
+            <p>Every week our club picks a STEM article, reads it and talks it through.
+               Read our picks, solve a STEM puzzle, and level up your avatar along the way.</p>
             <div class="hero-buttons">
               <a class="btn btn-dark" href="#/articles" data-sound="pop">Start reading <span class="btn-arrow">→</span></a>
               <a class="btn btn-outline" href="#/play" data-sound="pop">Play a puzzle</a>
@@ -101,7 +101,7 @@ export const HomePage = (() => {
         <div class="section-head">
           <span class="pill-label">Latest articles</span>
           <h2>Fresh from the club</h2>
-          <p>New reads written by club members.</p>
+          <p>The latest articles our club picked and discussed.</p>
         </div>
         <div class="article-grid">
           ${Articles.newestFirst().slice(0, 3).map(Articles.card).join("")}
@@ -124,7 +124,7 @@ export const HomePage = (() => {
           </div>
           <div class="plan-cards">
             <a href="#/articles" class="plan-card bg-vanilla" data-sound="pop">
-              <span class="plan-num">01</span><b>Read</b><small>Articles written by club members</small>
+              <span class="plan-num">01</span><b>Read</b><small>Articles picked by the club</small>
             </a>
             <a href="#/play" class="plan-card bg-sage" data-sound="pop">
               <span class="plan-num">02</span><b>Play</b><small>STEM Wordle and crosswords</small>
@@ -172,7 +172,7 @@ export const HomePage = (() => {
           </a>
           <a href="#/articles" class="bento-card bg-rose" data-sound="pop">
             <span class="bento-emoji">📰</span>
-            <h3>Latest articles</h3><p>Fresh from club members.</p>
+            <h3>Latest articles</h3><p>The club's newest picks.</p>
           </a>
         </div>
       </section>
@@ -183,15 +183,15 @@ export const HomePage = (() => {
           <span class="pill-label">About the club</span>
           <h2>Curious minds,<br><span class="accent">one article at a time.</span></h2>
           <p>We're a group of high school students who love asking questions about how the world works.
-             Every week we research something that made us wonder, write it up in plain words,
-             and share it here, along with puzzles to test what you learned.</p>
-          <p class="signature">— The editors</p>
+             Every week we choose an article from lots of options, read it, and discuss what we learned.
+             Then we share it here, along with puzzles to test what you remember.</p>
+          <p class="signature">— The BioBulletin club</p>
         </div>
         <div class="about-cta card bg-rose">
-          <span class="bento-emoji">✍️</span>
-          <h3>Want to write for us?</h3>
-          <p>No experience needed. Bring a question you can't stop thinking about.</p>
-          <a class="btn btn-dark" href="#/articles" data-sound="pop">See what we write <span class="btn-arrow">→</span></a>
+          <span class="bento-emoji">💬</span>
+          <h3>Got an article to suggest?</h3>
+          <p>Found something fascinating? Tell a club member and we might pick it for our next discussion.</p>
+          <a class="btn btn-dark" href="#/articles" data-sound="pop">See our picks <span class="btn-arrow">→</span></a>
         </div>
       </section>
 

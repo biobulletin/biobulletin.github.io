@@ -1,6 +1,6 @@
 # BioBulletin
 
-A student-written STEM magazine website with articles, STEM Wordle,
+A website for a student STEM reading club: articles the club picks, reads and discusses, plus STEM Wordle,
 crosswords, a quiz of the day, and a customisable avatar.
 
 - Plain HTML, CSS and JavaScript — no build step, no frameworks
@@ -39,7 +39,7 @@ Commit and push to `main`. GitHub Pages rebuilds the site in 1–2 minutes
 
 All content lives in two files. You never need to touch the page code.
 
-### Articles → `js/data/articles.js`
+### Articles (the club's picks) → `js/data/articles.js`
 
 Copy an existing `{ ... }` block, paste it at the **top** of the `ARTICLES` list
 and change every field:
@@ -48,12 +48,18 @@ and change every field:
 |---|---|---|
 | `id` | `"why-is-the-sky-blue"` | Unique, lowercase, dashes. Becomes the web address. |
 | `title` | `"Why Is the Sky Blue?"` | |
-| `author` | `"Aisha K."` | |
-| `date` | `"2026-11-10"` | `YYYY-MM-DD`. Newest articles show first. |
+| `author` | `"Jane Smith"` | Who **originally** wrote the article. |
+| `source` | `"BBC Science Focus"` | Optional. Where it was published. |
+| `link` | `"https://…"` | Optional. The original article (must start with `https://`). |
+| `date` | `"2026-11-10"` | `YYYY-MM-DD`, when the club read it. Newest show first. |
 | `category` | `"Physics"` | Must match a name in `CATEGORIES`. |
 | `emoji` | `"🌤️"` | Shown on the card. |
 | `excerpt` | `"Sunlight contains every colour…"` | One-sentence teaser. |
 | `body` | `` `...` `` | The article, between backticks. |
+
+When `source` or `link` is set, the article page shows an "Originally published by…" box with a link to the original.
+
+**Copyright:** copying a whole article from another site usually needs the writer's permission. Safer: a summary in the club's own words plus `link` to the original, or articles that allow sharing (e.g. Creative Commons).
 
 Body formatting:
 

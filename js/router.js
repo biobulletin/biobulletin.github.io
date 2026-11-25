@@ -23,7 +23,7 @@ export const Router = (() => {
 
   const SITE = "BioBulletin";
   function setTitle(title) {
-    document.title = title ? `${title} · ${SITE}` : `${SITE} — a student STEM magazine`;
+    document.title = title ? `${title} · ${SITE}` : `${SITE} — a student STEM reading club`;
   }
 
   // Turn "#/article/sky-blue" into "/article/sky-blue"

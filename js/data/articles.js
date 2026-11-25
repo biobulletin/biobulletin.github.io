@@ -1,20 +1,37 @@
 /* =========================================================
-   ARTICLES — the only file you need to edit to add articles.
+   ARTICLES — the club's reading list. The only file you need
+   to edit to add an article the club has picked.
 
    HOW TO ADD AN ARTICLE
    1. Copy one { ... } block below and paste it at the TOP of the list.
-   2. Change every field. The id must be unique, lowercase, with
-      dashes instead of spaces (it becomes the web address).
-   3. category must be one of the names in CATEGORIES.
-   4. Write the body between the ` backticks:
+   2. Change every field:
+        id        unique, lowercase, dashes instead of spaces
+                  (it becomes the web address)
+        title     the article's title
+        author    who ORIGINALLY wrote it
+        source    (optional) where it was published, e.g. "BBC Science Focus"
+        link      (optional) web address of the original, starting https://
+        date      "YYYY-MM-DD", when the club read it (newest shows first)
+        category  one of the names in CATEGORIES
+        emoji     shown on the card
+        excerpt   one-sentence teaser
+   3. Write the body between the ` backticks:
         - Leave an empty line between paragraphs
         - ## at the start of a line   → a sub-heading
         - > at the start of a line    → a highlighted "fun fact" box
         - **like this**               → bold
    Reading time is calculated automatically.
 
+   ABOUT OTHER PEOPLE'S ARTICLES
+   Copying a whole article from another website onto ours usually
+   needs the writer's permission. Safer options: write a short summary
+   in the club's own words and use `link` to send readers to the
+   original, or only use articles that allow sharing (some say so,
+   e.g. "Creative Commons"). Either way, keep author/source so the
+   writer gets the credit.
+
    The four articles below are SAMPLES — replace them with the
-   club's real articles.
+   club's real picks.
    ========================================================= */
 
 export const CATEGORIES = {
@@ -31,6 +48,8 @@ export const ARTICLES = [
     id: "secret-maths-of-sunflowers",
     title: "The Secret Maths Hiding in Sunflowers",
     author: "Sample Writer",
+    source: "Sample Science Magazine",          // optional
+    link: "https://example.com/sunflower-maths", // optional
     date: "2026-11-21",
     category: "Maths",
     emoji: "🌻",

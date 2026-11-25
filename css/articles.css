@@ -151,6 +151,18 @@
 .fun-fact span { font-size: 1.5rem; }
 .fun-fact p { font-size: 1rem !important; font-weight: 600; }
 
+.credit {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  padding: 16px 20px;
+  border-radius: var(--r-md);
+  background: var(--sand);
+}
+.credit p { color: var(--ink); font-size: 0.95rem; }
+.credit a { color: var(--red); font-weight: 700; }
+.credit a:hover { text-decoration: underline; }
+
 .finish-card {
   display: flex;
   flex-wrap: wrap;

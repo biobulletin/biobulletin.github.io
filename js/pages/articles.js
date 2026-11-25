@@ -41,6 +41,20 @@ export const Articles = (() => {
     }).join("");
   }
 
+  // "Originally published by…" box. Only shown if the article has a
+  // source or link. Links must start with http(s):// so a typo (or
+  // something like "javascript:") can never become a clickable link.
+  function creditHTML(a) {
+    const safeLink = /^https?:\/\//i.test(a.link || "") ? a.link : "";
+    if (!a.source && !safeLink) return "";
+    return `
+      <aside class="credit">
+        <span aria-hidden="true">📎</span>
+        <p>Originally published${a.source ? ` by <b>${UI.esc(a.source)}</b>` : ""}.
+          ${safeLink ? `<a href="${UI.esc(safeLink)}" target="_blank" rel="noopener noreferrer">Read the original article ↗</a>` : ""}</p>
+      </aside>`;
+  }
+
   // One article card (Outliers-style: coloured top, text below)
   function card(a) {
     const cat = categoryOf(a);
@@ -56,7 +70,7 @@ export const Articles = (() => {
           <h3>${UI.esc(a.title)}</h3>
           <p>${UI.esc(a.excerpt)}</p>
           <div class="acard-meta">
-            <span>${UI.esc(a.author)}</span>
+            <span>${UI.esc(a.source || a.author)}</span>
             <span>${readingMinutes(a)} min read</span>
           </div>
         </div>
@@ -76,9 +90,9 @@ export const Articles = (() => {
       <section class="container articles-page">
         <div class="articles-head">
           <div>
-            <span class="pill-label">The magazine</span>
+            <span class="pill-label">Our reading list</span>
             <h1>All articles</h1>
-            <p>${ARTICLES.length} articles written by club members. Finish one to earn ${REWARD} coins.</p>
+            <p>${ARTICLES.length} articles picked and discussed by the club. Finish one to earn ${REWARD} coins.</p>
           </div>
           <label class="search">
             <span aria-hidden="true">🔍</span>
@@ -104,7 +118,7 @@ export const Articles = (() => {
       const q = search.toLowerCase();
       const list = newestFirst().filter((a) =>
         (activeCategory === "All" || a.category === activeCategory) &&
-        [a.title, a.excerpt, a.author, a.category, a.body].join(" ").toLowerCase().includes(q)
+        [a.title, a.excerpt, a.author, a.source || "", a.category, a.body].join(" ").toLowerCase().includes(q)
       );
       grid.innerHTML = list.length
         ? list.map(card).join("")
@@ -157,8 +171,8 @@ export const Articles = (() => {
           <span class="chip bg-${cat.color}">${cat.emoji} ${UI.esc(a.category)}</span>
           <h1>${UI.esc(a.title)}</h1>
           <div class="reader-meta">
-            <span>By <b>${UI.esc(a.author)}</b></span>
-            <span>${niceDate(a.date)}</span>
+            <span>By <b>${UI.esc(a.author)}</b>${a.source ? ` · ${UI.esc(a.source)}` : ""}</span>
+            <span>Club pick · ${niceDate(a.date)}</span>
             <span>${readingMinutes(a)} min read</span>
           </div>
         </header>
@@ -166,6 +180,8 @@ export const Articles = (() => {
         <div class="reader-hero bg-${cat.color}" aria-hidden="true">${a.emoji}</div>
 
         <div class="reader-body">${formatBody(a.body)}</div>
+
+        ${creditHTML(a)}
 
         <div class="finish-card card" id="finishCard"></div>
       </article>
