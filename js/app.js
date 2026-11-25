@@ -20,18 +20,10 @@ function placeholderPage({ emoji, title, text, step, color }) {
 
 Router.add(/^\/$/, HomePage);
 
-Router.add(/^\/articles$/, placeholderPage({
-  emoji: "📰", title: "Articles", step: 6, color: "mint",
-  text: "All student articles, with category filters and search.",
-}));
+Router.add(/^\/articles$/, Articles.listPage);
 
-// One article, e.g. #/article/sky-blue → id = "sky-blue"
-Router.add(/^\/article\/([\w-]+)$/, (app, id) => {
-  placeholderPage({
-    emoji: "📖", title: "Reading an article", step: 6, color: "sky",
-    text: `This will show the article with the id “${id}”.`,
-  })(app);
-});
+// One article, e.g. #/article/why-is-the-sky-blue → id = "why-is-the-sky-blue"
+Router.add(/^\/article\/([\w-]+)$/, Articles.readerPage);
 
 Router.add(/^\/play$/, placeholderPage({
   emoji: "🧩", title: "Play", step: 7, color: "lime",

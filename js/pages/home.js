@@ -113,6 +113,21 @@ const HomePage = (() => {
         <div class="ribbon ribbon-ink">${ribbon(RIBBON_B)}</div>
       </div>
 
+      <!-- ========== FRESH FROM THE CLUB (latest 3 articles) ========== -->
+      <section class="container fresh">
+        <div class="section-head">
+          <span class="pill-label">Latest articles</span>
+          <h2>Fresh from the club</h2>
+          <p>New reads written by club members.</p>
+        </div>
+        <div class="article-grid">
+          ${Articles.newestFirst().slice(0, 3).map(Articles.card).join("")}
+        </div>
+        <div class="fresh-foot">
+          <a class="btn btn-dark" href="#/articles" data-sound="pop">See all articles <span class="btn-arrow">→</span></a>
+        </div>
+      </section>
+
       <!-- ========== THE PLAN ========== -->
       <section class="plan">
         <div class="container">

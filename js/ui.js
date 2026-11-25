@@ -7,6 +7,18 @@
    ========================================================= */
 
 const UI = (() => {
+  // ---------- Escape text before putting it into HTML ----------
+  // Turns < > & " ' into safe codes, so text like "a < b" shows as text
+  // instead of being treated as HTML (which could break the page).
+  function esc(text) {
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   // ---------- Toasts: small messages that slide in, then disappear ----------
   function toast(message, emoji = "✨") {
     const box = document.getElementById("toasts");
@@ -70,5 +82,5 @@ const UI = (() => {
     });
   }
 
-  return { init, toast, reward };
+  return { init, toast, reward, esc };
 })();
