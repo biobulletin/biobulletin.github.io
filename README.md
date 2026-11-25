@@ -5,7 +5,8 @@ crosswords, a quiz of the day, and a customisable avatar.
 
 - Plain HTML, CSS and JavaScript — no build step, no frameworks
 - Progress is saved in the visitor's browser (localStorage)
-- Hosted free on GitHub Pages: https://dananwer67.github.io/biobulletin/
+- Hosted free on GitHub Pages: https://biobulletin.github.io/
+- Code: https://github.com/biobulletin/biobulletin.github.io
 
 ---
 
