@@ -111,16 +111,6 @@ main { min-height: 70vh; }
 /* The router focuses <main> for screen readers — no visible outline needed */
 #app:focus, #app:focus-visible { outline: none; }
 
-/* Temporary placeholder pages */
-.page-placeholder { padding: 48px 0 80px; }
-.page-placeholder .card {
-  display: grid;
-  justify-items: start;
-  gap: 16px;
-  padding: 48px;
-}
-.placeholder-emoji { font-size: 3rem; }
-
 /* ---------- Footer ---------- */
 .footer {
   margin-top: 80px;
@@ -179,5 +169,4 @@ main { min-height: 70vh; }
   .nav .brand span { display: none; }    /* logo only, to fit coins + sound */
   .nav { padding-left: 8px; }
   #toasts { left: 20px; right: 20px; top: 76px; justify-items: center; }
-  .page-placeholder .card { padding: 28px; }
 }

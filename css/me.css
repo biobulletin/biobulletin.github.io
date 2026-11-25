@@ -1,0 +1,107 @@
+/* =========================================================
+   My Space: avatar + shop
+   ========================================================= */
+
+.me-page { padding: 48px 0 20px; }
+
+/* Small avatar in the nav */
+.nav-avatar {
+  display: block;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--line);
+  transition: transform 0.2s ease;
+}
+.nav-avatar:hover { transform: scale(1.08) rotate(-6deg); }
+.nav-avatar svg { width: 100%; height: 100%; }
+
+/* ---------- Layout: big avatar left, shop right ---------- */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.4fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.avatar-stage {
+  position: sticky;
+  top: 100px;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 32px;
+  background: var(--pink);
+  /* soft rings behind the avatar, like the dashboard design */
+  background-image: radial-gradient(circle at 50% 42%, rgba(255,255,255,0.55) 0 32%, rgba(255,255,255,0.3) 32% 44%, transparent 44%);
+}
+.avatar-big { width: min(300px, 100%); border-radius: 50%; }
+.avatar-big .avatar-svg { width: 100%; height: auto; filter: drop-shadow(0 10px 18px rgba(30, 27, 75, 0.18)); }
+.avatar-big.wiggle { animation: wiggle 0.6s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes wiggle {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.08) rotate(-6deg); }
+  50%  { transform: scale(0.96) rotate(4deg); }
+  75%  { transform: scale(1.03) rotate(-2deg); }
+  100% { transform: scale(1); }
+}
+
+.coin-balance {
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  font-weight: 600;
+}
+
+/* ---------- Shop ---------- */
+.shop { display: grid; gap: 20px; }
+
+.shop-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.shop-tab {
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--line);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.shop-tab.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+}
+.shop-item {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 14px 10px;
+  border-radius: var(--r-md);
+  border: 2px solid var(--line);
+  background: var(--cream);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.shop-item:hover { transform: translateY(-3px); border-color: var(--lav-d); }
+.shop-item.is-wearing { border-color: var(--ink); background: var(--white); }
+.shop-item.locked { opacity: 0.55; }
+.shop-item.locked:hover { transform: none; }
+.avatar-mini { width: 86px; height: 86px; }
+.item-name { font-weight: 700; font-size: 0.9rem; }
+
+.badge {
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.badge.wearing { background: var(--ink); color: var(--lime); }
+.badge.owned   { background: var(--mint); }
+.badge.price   { background: var(--lime); }
+
+@media (max-width: 860px) {
+  .shop-layout { grid-template-columns: 1fr; }
+  .avatar-stage { position: static; }
+  .avatar-big { width: min(220px, 70%); }
+  .shop-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
+  .avatar-mini { width: 68px; height: 68px; }
+}

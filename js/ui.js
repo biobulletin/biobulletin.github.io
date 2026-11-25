@@ -62,10 +62,20 @@ const UI = (() => {
     btn.setAttribute("aria-pressed", String(muted));
   }
 
+  // ---------- Little avatar in the nav (always shows your current look) ----------
+  let shownLook = "";
+  function renderNavAvatar() {
+    const look = JSON.stringify(Store.get().avatar);
+    if (look === shownLook) return;          // only redraw when the outfit changed
+    shownLook = look;
+    document.getElementById("navAvatar").innerHTML = Avatar.svg(Store.get().avatar);
+  }
+
   function init() {
     renderCoins();
     renderMute();
-    Store.onChange(() => { renderCoins(); renderMute(); });
+    renderNavAvatar();
+    Store.onChange(() => { renderCoins(); renderMute(); renderNavAvatar(); });
 
     document.getElementById("muteBtn").addEventListener("click", () => {
       Store.update((s) => { s.muted = !s.muted; });
