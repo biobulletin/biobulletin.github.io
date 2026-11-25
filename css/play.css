@@ -1,0 +1,137 @@
+/* =========================================================
+   Games: Play hub + Wordle
+   ========================================================= */
+
+/* ---------- Play hub ---------- */
+.play-page { padding: 48px 0 20px; }
+.is-soon { opacity: 0.6; }
+
+/* ---------- Wordle page ---------- */
+.wordle-page {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  max-width: 560px;
+  padding: 32px 0 20px;
+}
+.wordle-page .back-link { justify-self: start; margin-bottom: 0; }
+
+.wordle-head { display: grid; justify-items: center; gap: 10px; text-align: center; }
+.wordle-head h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); }
+
+/* Colour key under the title */
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; margin-top: 6px; font-size: 0.82rem; }
+.legend i {
+  display: inline-block;
+  width: 12px; height: 12px;
+  margin-right: 4px;
+  border-radius: 4px;
+  vertical-align: -1px;
+}
+
+/* Tile colours (used by tiles, keys and the legend).
+   No !important here: it would beat the flip animation below. */
+.tile.correct, .key.correct, .legend i.correct { background: var(--mint); border-color: var(--mint); }
+.tile.present, .key.present, .legend i.present { background: var(--lime); border-color: var(--lime); }
+.tile.absent,  .key.absent,  .legend i.absent  { background: #D6D2E6; border-color: #D6D2E6; color: var(--muted); }
+
+/* ---------- Board ---------- */
+.board {
+  /* Tiles shrink on narrow phones and for long words */
+  /* Tiles shrink to fit both the screen WIDTH and HEIGHT,
+     so the board + keyboard fit without scrolling */
+  /* clamp(smallest, ideal, biggest) */
+  --tile: clamp(36px,
+                min(calc((100vw - 60px) / var(--len) - 8px),
+                    calc((100svh - 480px) / 6 - 8px)),
+                58px);
+  display: grid;
+  gap: 8px;
+}
+.wrow { display: flex; gap: 8px; }
+
+.tile {
+  display: grid;
+  place-items: center;
+  width: var(--tile);
+  height: var(--tile);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--white);
+  font-weight: 800;
+  font-size: calc(var(--tile) * 0.48);
+  text-transform: uppercase;
+}
+.tile.filled { border-color: var(--ink); }
+.tile.pop    { animation: tile-pop 0.12s ease; }
+@keyframes tile-pop { 50% { transform: scale(1.12); } }
+
+/* Flip each tile in turn when a guess is submitted.
+   The colour is already applied, but the flip hides it at the start. */
+.tile.reveal { animation: tile-flip 0.5s ease backwards; }
+@keyframes tile-flip {
+  0%   { transform: rotateX(0);     background: var(--white); border-color: var(--ink); color: var(--ink); }
+  49%  { transform: rotateX(90deg); background: var(--white); border-color: var(--ink); color: var(--ink); }
+  50%  { transform: rotateX(90deg); }
+  100% { transform: rotateX(0); }
+}
+
+.wrow.shake { animation: shake 0.4s ease; }
+@keyframes shake {
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.wordle-msg { min-height: 1.4em; font-weight: 700; color: var(--ink); }
+
+.hint-box p {
+  padding: 12px 18px;
+  border-radius: var(--r-md);
+  background: var(--lav);
+  color: var(--ink);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---------- End of game ---------- */
+.wordle-end { display: grid; gap: 8px; width: 100%; text-align: center; justify-items: center; }
+.wordle-end p { color: var(--ink); }
+.wordle-end .small { font-size: 0.85rem; opacity: 0.7; }
+.wordle-end-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
+
+/* ---------- On-screen keyboard ---------- */
+.keyboard { display: grid; gap: 8px; width: 100%; user-select: none; }
+.krow { display: flex; justify-content: center; gap: 6px; }
+.key {
+  flex: 1;
+  max-width: 46px;
+  height: 54px;
+  border-radius: 10px;
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 0 var(--line);
+  transition: transform 0.08s ease;
+}
+.key:active { transform: translateY(2px); box-shadow: none; }
+.key.wide { flex: 1.6; max-width: 76px; font-size: 0.8rem; }
+
+@media (max-width: 760px) {
+  .wordle-page { gap: 12px; padding-top: 20px; }
+  /* Phones: keyboard + tab bar take more height, so tiles get a bit smaller */
+  .board { --tile: clamp(34px, min(calc((100vw - 60px) / var(--len) - 8px), calc((100svh - 560px) / 6 - 6px)), 56px); gap: 6px; }
+  .wrow { gap: 6px; }
+  .wordle-head p { font-size: 0.9rem; }
+  .key { height: 48px; font-size: 0.85rem; }
+  .krow { gap: 4px; }
+
+  /* Keep the keyboard on screen, just above the bottom tab bar */
+  .keyboard {
+    position: sticky;
+    bottom: 88px;
+    z-index: 5;
+    padding: 8px 0;
+    background: var(--cream);
+  }
+}

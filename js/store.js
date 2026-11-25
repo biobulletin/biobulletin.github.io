@@ -21,6 +21,7 @@ const Store = (() => {
       xp: 0,                    // everything ever earned → decides level
       read: {},                 // { articleId: "2026-11-25" }
       solved: { wordle: {}, crossword: {} },   // { puzzleId: "2026-11-25" }
+      wordleDaily: null,        // today's Wordle in progress: { date, word, guesses }
       quiz: {},                 // { "2026-11-25": true } one quiz per day
       days: [],                 // dates the visitor was active → streak
       avatar: { color: "lav", eyes: "round", hat: "none", acc: "none", bg: "mint" },

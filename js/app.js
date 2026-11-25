@@ -25,10 +25,8 @@ Router.add(/^\/articles$/, Articles.listPage);
 // One article, e.g. #/article/why-is-the-sky-blue → id = "why-is-the-sky-blue"
 Router.add(/^\/article\/([\w-]+)$/, Articles.readerPage);
 
-Router.add(/^\/play$/, placeholderPage({
-  emoji: "🧩", title: "Play", step: 7, color: "lime",
-  text: "STEM Wordle and crosswords.",
-}));
+Router.add(/^\/play$/, PlayPage);
+Router.add(/^\/play\/wordle$/, Wordle.page);
 
 Router.add(/^\/me$/, placeholderPage({
   emoji: "🤖", title: "My Space", step: 10, color: "pink",

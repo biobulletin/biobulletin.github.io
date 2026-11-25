@@ -164,7 +164,7 @@ const HomePage = (() => {
           <p>Quick STEM games. Short enough for a break, tricky enough to make you think.</p>
         </div>
         <div class="bento">
-          <a href="#/play" class="bento-card bento-big bg-ink" data-sound="pop">
+          <a href="#/play/wordle" class="bento-card bento-big bg-ink" data-sound="pop">
             <span class="chip bg-lime">New every day</span>
             <div class="mini-wordle" aria-hidden="true">
               <span class="t g">O</span><span class="t y">R</span><span class="t">B</span><span class="t g">I</span><span class="t">T</span>
