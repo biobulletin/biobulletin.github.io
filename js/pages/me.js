@@ -118,7 +118,7 @@ export function MePage(app) {
               <span>${Math.round(Store.levelProgress() * 100)}%</span>
             </div>
             <div class="bar dark"><span style="width:${Store.levelProgress() * 100}%"></span></div>
-            <button class="avatar-big" id="bigAvatar" data-sound="none" aria-label="Poke your bot"></button>
+            <button class="avatar-big" id="bigAvatar" data-sound="none" aria-label="Pat your capybara"></button>
             <div class="avatar-actions">
               <a class="icon-btn" href="#shop" data-sound="pop" aria-label="Go to the shop" title="Shop">🛍️</a>
               <a class="icon-btn" href="#/articles" aria-label="Read articles" title="Read">📰</a>
@@ -148,7 +148,7 @@ export function MePage(app) {
         <div class="shop-head">
           <div>
             <span class="pill-label">Avatar shop</span>
-            <h2>Style your Bio bot</h2>
+            <h2>Style your capybara</h2>
           </div>
           <div class="coin-balance">🪙 <b id="shopCoins"></b> coins to spend</div>
         </div>

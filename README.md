@@ -135,7 +135,7 @@ js/
   store.js              save system (localStorage + tamper seal)
   sound.js              sound effects (Web Audio, no files)
   ui.js                 toasts, coins, mute, nav avatar, rewards
-  avatar.js             Bio bot SVG drawing + shop catalog
+  avatar.js             capybara avatar SVG drawing + shop catalog
   crossword-builder.js  turns words into a crossword grid
   data/                 CONTENT: articles.js, puzzles.js
   pages/                home, articles, wordle, crossword, play, me

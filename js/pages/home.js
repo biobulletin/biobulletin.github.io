@@ -133,7 +133,7 @@ export const HomePage = (() => {
               <span class="plan-num">03</span><b>Earn</b><small>Coins for everything you finish</small>
             </a>
             <a href="#/me" class="plan-card plan-card-dashed" data-sound="pop">
-              <span class="plan-num">04</span><b>Style</b><small>Dress up your Bio bot</small>
+              <span class="plan-num">04</span><b>Style</b><small>Dress up your capybara</small>
             </a>
           </div>
         </div>

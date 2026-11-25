@@ -67,7 +67,7 @@ export const Store = (() => {
       crosswordProgress: {},    // letters typed so far: { puzzleId: { "r,c": "A" } }
       quiz: {},                 // { "2026-11-25": true } one quiz per day
       days: [],                 // dates the visitor was active → streak
-      avatar: { color: "lav", eyes: "round", hat: "none", acc: "none", bg: "mint" },
+      avatar: { color: "caramel", eyes: "dot", hat: "none", acc: "none", bg: "vanilla" },
       owned: [],                // bought items, e.g. "hat:crown"
       muted: false,             // sound on/off
     };
