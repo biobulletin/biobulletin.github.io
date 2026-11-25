@@ -1,5 +1,5 @@
 /* =========================================================
-   Avatar — "Atom bot", the club's robot mascot.
+   Avatar — "Bio bot", the club's robot mascot.
 
    The avatar is drawn as SVG from layers, like paper cut-outs
    stacked on top of each other:
@@ -159,7 +159,7 @@ const Avatar = (() => {
     const body = find("color", look.color).value;
     const bg = find("bg", look.bg).value;
     return `
-      <svg viewBox="0 0 200 200" class="${className}" role="img" aria-label="Atom bot avatar">
+      <svg viewBox="0 0 200 200" class="${className}" role="img" aria-label="Bio bot avatar">
         <circle cx="100" cy="100" r="100" fill="${bg}"/>
         <!-- arms + body -->
         <rect x="44" y="146" width="20" height="36" rx="10" fill="${body}" stroke="${INK}" stroke-width="4"/>

@@ -9,7 +9,10 @@
    ========================================================= */
 
 const Store = (() => {
-  const KEY = "curious-atom-save-v1";   // the label on our storage box
+  // The label on our storage box. It still uses the project's first
+  // placeholder name ON PURPOSE: changing it would make every browser
+  // look in a new, empty box, and everyone would lose their progress.
+  const KEY = "curious-atom-save-v1";
   const XP_PER_LEVEL = 50;
 
   // What a brand-new visitor starts with

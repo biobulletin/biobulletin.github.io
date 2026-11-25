@@ -10,7 +10,7 @@ function MePage(app) {
     <section class="container me-page">
       <div class="section-head">
         <span class="pill-label">My Space</span>
-        <h1>Your Atom bot</h1>
+        <h1>Your Bio bot</h1>
         <p>Earn coins by reading and playing, then spend them to make your bot uniquely yours.</p>
       </div>
 
